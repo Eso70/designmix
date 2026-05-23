@@ -9,7 +9,7 @@ const parseOrigins = (origins: string | undefined, fallback: string[]): string[]
 
 // Get allowed CORS origins from environment variable (comma-separated)
 const getAllowedCorsOrigins = (): string[] => {
-  const port = process.env.PORT || 3001;
+  const port = process.env.PORT || 3002;
   const corsOrigins = process.env.CORS_ALLOWED_ORIGINS || process.env.ALLOWED_DEV_ORIGINS;
   return parseOrigins(corsOrigins, [`http://localhost:${port}`]);
 };
@@ -86,7 +86,7 @@ const nextConfig: NextConfig = {
     const allowedOrigins = getAllowedCorsOrigins();
     // Use first allowed origin (restricted CORS - not wildcard)
     // Fallback to localhost if no origins configured
-    const port = process.env.PORT || 3001;
+    const port = process.env.PORT || 3002;
     const corsOrigin = allowedOrigins.length > 0 ? allowedOrigins[0] : `http://localhost:${port}`;
     
     const securityHeaders = [
@@ -154,13 +154,17 @@ const nextConfig: NextConfig = {
       });
     }
     
-    return [
+    const headersArray = [
       {
         source: '/:path*',
         headers: securityHeaders,
       },
-      // Cache static assets for performance (reduces function invocations on free hosting)
-      {
+    ];
+
+    // Only set long-lived Cache-Control headers for static assets in production.
+    // Setting these in development can break Next.js dev behavior.
+    if (process.env.NODE_ENV === 'production') {
+      headersArray.push({
         source: '/_next/static/:path*',
         headers: [
           {
@@ -168,8 +172,9 @@ const nextConfig: NextConfig = {
             value: 'public, max-age=31536000, immutable',
           },
         ],
-      },
-      {
+      });
+
+      headersArray.push({
         source: '/_next/image/:path*',
         headers: [
           {
@@ -177,8 +182,10 @@ const nextConfig: NextConfig = {
             value: 'public, max-age=31536000, immutable',
           },
         ],
-      },
-    ];
+      });
+    }
+
+    return headersArray;
   },
   
 };
