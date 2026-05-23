@@ -320,7 +320,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
       {/* Background Color */}
       <div className="space-y-1.5">
         <label className="block text-xs sm:text-sm font-medium text-gray-700">
-          ڕەنگی پاشبنەوە <span className="text-xs text-gray-500 font-normal ml-2">(یان ڕەنگێکی خوازراو هەڵبژێرە)</span>
+          ڕەنگی باکگڕاوند
         </label>
         
         <div className="grid grid-cols-7 sm:grid-cols-10 md:grid-cols-14 gap-1.5 items-center">

@@ -320,7 +320,7 @@ export const LinksStep = memo(function LinksStep({
 
   return (
     <div className="space-y-3 sm:space-y-4">
-      <p className="text-xs sm:text-sm text-gray-600">لینکەکان بۆ پلاتفۆڕمەکانە هەڵبژێردراوەکان زیاد بکە</p>
+      <p className="text-xs sm:text-sm text-gray-600">لینک بۆ پلاتفۆڕمە هەڵبژێردراوەکان زیاد بکە</p>
       
       <div className="space-y-2 sm:space-y-3">
         {sortedLinks.map(({ linkId, platform, link }, index) => {

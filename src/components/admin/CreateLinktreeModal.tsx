@@ -176,7 +176,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
   const validateBackgroundColor = useCallback((value: string): string | undefined => {
     const selectedBgColor = BACKGROUND_COLORS.find(c => c.id === value)?.value || value;
     if (!selectedBgColor) {
-      return "تکایە ڕەنگی پاشبنەوە هەڵبژێرە";
+      return "تکایە ڕەنگی باکگڕاوند هەڵبژێرە";
     }
     return undefined;
   }, []);
@@ -1305,7 +1305,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">
                 {currentStep === "basic" && "زانیارییە سەرەکییەکان"}
-                {currentStep === "select" && "پلاتفۆڕمەکانەکان هەڵبژێرە"}
+                {currentStep === "select" && "پلاتفۆڕمەکان هەڵبژێرە"}
                 {currentStep === "links" && "لینکەکان زیاد بکە"}
               </p>
             </div>

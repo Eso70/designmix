@@ -76,7 +76,7 @@ export const PlatformSelectionStep = memo(function PlatformSelectionStep({
 
   return (
     <div className="space-y-3 sm:space-y-4">
-      <p className="text-xs sm:text-sm text-gray-600 text-center">پلاتفۆڕمەکانەکان هەڵبژێرە</p>
+      <p className="text-xs sm:text-sm text-gray-600 text-center">پلاتفۆڕمەکان هەڵبژێرە</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {SOCIAL_PLATFORMS.map((platform) => (
           <PlatformButton
