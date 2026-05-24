@@ -62,17 +62,12 @@ export const PlatformSelectionStep = memo(function PlatformSelectionStep({
   touched,
   onTogglePlatform,
 }: PlatformSelectionStepProps) {
-  // Pre-compute selected platforms map for O(1) lookup
+  // Pre-compute selected platforms map from existing socialLinks to avoid
+  // transient desync between `selectedPlatforms` and `socialLinks` state updates.
+  // This ensures the UI reflects actual created link instances.
   const selectedPlatformsMap = useMemo(() => {
-    const platformMap = new Set<string>();
-    selectedPlatforms.forEach(id => {
-      const link = socialLinks.find(l => l.id === id);
-      if (link) {
-        platformMap.add(link.platform);
-      }
-    });
-    return platformMap;
-  }, [selectedPlatforms, socialLinks]);
+    return new Set(socialLinks.map(l => l.platform));
+  }, [socialLinks]);
 
   return (
     <div className="space-y-3 sm:space-y-4">
@@ -92,7 +87,7 @@ export const PlatformSelectionStep = memo(function PlatformSelectionStep({
       )}
       {selectedPlatforms.length === 0 && !error && (
         <p className="text-center text-sm text-gray-600 py-4">
-          لانی کەم یەک پلاتفۆڕمەکان هەڵبژێرە
+          لانی کەم یەک لە پلاتفۆڕمەکان هەڵبژێرە
         </p>
       )}
     </div>

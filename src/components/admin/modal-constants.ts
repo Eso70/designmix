@@ -12,7 +12,7 @@ import {
   SiLinkedin,
   SiSnapchat,
 } from "react-icons/si";
-import { FaPhoneAlt, FaEnvelope, FaGlobe } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaGlobe, FaLink } from "react-icons/fa";
 import { DEFAULT_FOOTER_NAME, DEFAULT_FOOTER_PHONE as GLOBAL_DEFAULT_FOOTER_PHONE } from "@/lib/constants/footer";
 import { BACKGROUND_GRADIENTS } from "@/lib/config/background-gradients";
 
@@ -32,6 +32,7 @@ export const SOCIAL_PLATFORMS = [
   { id: "discord", name: "Discord", icon: SiDiscord, color: "from-indigo-500/80 via-indigo-600/70 to-indigo-700/80", brandColor: "indigo" },
   { id: "email", name: "Email", icon: FaEnvelope, color: "from-gray-400/60 via-gray-500/50 to-gray-600/40", brandColor: "gray" },
   { id: "website", name: "Website", icon: FaGlobe, color: "from-emerald-400/60 via-teal-400/50 to-cyan-400/40", brandColor: "emerald" },
+  { id: "custom", name: "Custom Link", icon: FaLink, color: "from-slate-400/80 via-gray-500/70 to-slate-600/80", brandColor: "gray" },
 ];
 
 // Countries list
@@ -127,7 +128,7 @@ export function getPlatformNameKurdish(platform: string): string {
     discord: "دیسکۆرد",
     email: "ئیمەیڵ",
     website: "وێبسایت",
-    custom: "لینک",
+    custom: "لینکی دیکە",
   };
 
   return names[platform] || platform;

@@ -26,6 +26,14 @@ export function appendMessageToUrl(
     return url;
   }
 
+  // Viber uses a custom URI scheme (viber://) that new URL() cannot parse.
+  // Handle it manually before attempting URL parsing.
+  if (platform === "viber") {
+    const encodedMessage = encodeURIComponent(message);
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}text=${encodedMessage}`;
+  }
+
   try {
     const urlObj = new URL(url);
 
@@ -40,11 +48,6 @@ export function appendMessageToUrl(
       // searchParams.set() will automatically encode the message
       urlObj.searchParams.set("start", message);
       return urlObj.toString();
-    } else if (platform === "viber") {
-      // Viber: viber://chat?number=9647502471667&text=message
-      // searchParams.set() will automatically encode the message
-      urlObj.searchParams.set("text", message);
-      return urlObj.toString();
     }
 
     return url;
@@ -58,9 +61,6 @@ export function appendMessageToUrl(
     } else if (platform === "telegram") {
       const separator = url.includes("?") ? "&" : "?";
       return `${url}${separator}start=${encodedMessage}`;
-    } else if (platform === "viber") {
-      const separator = url.includes("?") ? "&" : "?";
-      return `${url}${separator}text=${encodedMessage}`;
     }
 
     return url;

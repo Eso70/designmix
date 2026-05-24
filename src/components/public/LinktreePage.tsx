@@ -228,6 +228,33 @@ export const LinktreePage = memo(function LinktreePage({ linktree, links }: Link
     };
   }, [linktree.template_config]);
 
+  /**
+   * Cross-platform URL opener.
+   * - Native URI schemes (tel:, viber://, mailto:) MUST use window.location.href on iOS Safari.
+   *   window.open() is blocked for these schemes on iOS and will silently fail.
+   * - Regular https:// links open in a new tab via window.open().
+   */
+  const openUrl = useCallback((targetUrl: string) => {
+    // Native app URI schemes — must use location.href, NOT window.open()
+    const isNativeScheme =
+      targetUrl.startsWith("tel:") ||
+      targetUrl.startsWith("viber://") ||
+      targetUrl.startsWith("mailto:");
+
+    if (isNativeScheme) {
+      window.location.href = targetUrl;
+      return;
+    }
+
+    // Regular web URLs — open in new tab
+    try {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    } catch {
+      // Fallback for popup blockers
+      window.location.href = targetUrl;
+    }
+  }, []);
+
   const handleLinkClick = useCallback((linkId: string, url: string, platform: string, defaultMessage?: string | null) => {
     const link = links.find((item) => item.id === linkId);
     if (link) {
@@ -263,11 +290,7 @@ export const LinktreePage = memo(function LinktreePage({ linktree, links }: Link
     if (platform === "whatsapp") {
       // If modal is disabled or has no questions, open WhatsApp URL directly
       if (!whatsappModalConfig || !whatsappModalConfig.questions || whatsappModalConfig.questions.length === 0) {
-        try {
-          window.open(url, "_blank", "noopener,noreferrer");
-        } catch {
-          // Ignore popup blockers; user can tap again
-        }
+        openUrl(url);
         return;
       }
       // Otherwise, show the modal
@@ -279,13 +302,8 @@ export const LinktreePage = memo(function LinktreePage({ linktree, links }: Link
     // Append default message to URL if platform supports it
     const finalUrl = appendMessageToUrl(url, platform, defaultMessage);
 
-    // Open link in new tab
-    try {
-      window.open(finalUrl, "_blank", "noopener,noreferrer");
-    } catch {
-      // Ignore popup blockers; user can tap again
-    }
-  }, [linktree, links, whatsappModalConfig]);
+    openUrl(finalUrl);
+  }, [linktree, links, whatsappModalConfig, openUrl]);
 
   // Handle WhatsApp question selection
   const handleWhatsAppQuestionSelect = useCallback((message: string) => {
@@ -295,15 +313,11 @@ export const LinktreePage = memo(function LinktreePage({ linktree, links }: Link
     const finalUrl = appendMessageToUrl(pendingWhatsAppUrl, "whatsapp", message);
 
     // Open WhatsApp with the message
-    try {
-      window.open(finalUrl, "_blank", "noopener,noreferrer");
-    } catch {
-      // Ignore popup blockers; user can tap again
-    }
+    openUrl(finalUrl);
 
     // Reset state
     setPendingWhatsAppUrl("");
-  }, [pendingWhatsAppUrl]);
+  }, [pendingWhatsAppUrl, openUrl]);
 
   return (
     <div className="relative">

@@ -203,9 +203,10 @@ const LinkItem = memo(function LinkItem({
                 platform.id === "facebook" ? "Any Facebook link: profile, page, event, group, watch, etc." :
                 platform.id === "linkedin" ? "Any LinkedIn link: profile, company, post, school, group, etc." :
                 platform.id === "youtube" ? "Any YouTube link: channel, video, playlist, shorts, youtu.be, etc." :
-                platform.id === "discord" ? "User ID (e.g., 123456789012345678)" :
+                platform.id === "discord" ? "User ID (123456789) or invite link (discord.gg/...)" :
                 platform.id === "email" ? "email@example.com" :
                 platform.id === "website" ? "example.com" :
+                platform.id === "custom" ? "https://example.com — any link you want" :
                 "Enter value"
               }
               className={`flex-1 w-full rounded-lg sm:rounded-xl md:rounded-2xl border ${

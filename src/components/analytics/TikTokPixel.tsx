@@ -1,13 +1,19 @@
 /**
  * TikTok Pixel Component (Server Component)
- * 
- * Securely loads the TikTok Pixel base code using Next.js Script.
- * Conversion events are fired from the client tracking utility so public
- * pages can attach richer, page-specific parameters.
- * 
+ *
+ * Loads the TikTok Pixel base code using the Next.js <Script> component.
+ * Using next/script instead of a raw <script> tag is the standard approach —
+ * it injects the script outside the React render tree so React never sees it,
+ * which eliminates the "script tag inside React component" console warning.
+ *
+ * Strategy "afterInteractive": script runs after the page hydrates, matching
+ * the original inline-script behaviour.
+ *
  * Environment Variable Required:
  * - NEXT_PUBLIC_TIKTOK_PIXEL_ID: Your TikTok Pixel ID
  */
+
+import Script from "next/script";
 
 export function TikTokPixel(): React.ReactElement | null {
   const pixelId = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID;
@@ -18,9 +24,9 @@ export function TikTokPixel(): React.ReactElement | null {
   }
 
   return (
-    <script
+    <Script
       id="tiktok-pixel"
-      suppressHydrationWarning
+      strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: `
           !function (w, d, t) {

@@ -77,9 +77,10 @@ export const extractValueFromUrl = (platform: string, url: string, metadata?: Re
         phoneNumber = match[1];
       }
     } else if (platform === "viber") {
-      const match = url.match(/number=(\+?)(\d+)/);
+      // Handle both %2B encoded + prefix (new format) and literal + prefix (legacy)
+      const match = url.match(/number=(?:%2B|\+)?(\d+)/i);
       if (match) {
-        phoneNumber = match[2];
+        phoneNumber = match[1];
       }
     }
     
@@ -114,15 +115,13 @@ export const extractValueFromUrl = (platform: string, url: string, metadata?: Re
       } else if (platform === "telegram") {
         value = pathParts[pathParts.length - 1] || "";
       } else if (platform === "discord") {
-        if (url.includes("discord.com/users/")) {
-          const match = url.match(/discord\.com\/users\/(\d+)/i);
-          value = match ? match[1] : url;
-        } else {
-          value = url;
-        }
+        // Preserve the full URL for all Discord link types:
+        // user profiles (discord.com/users/ID), server invites (discord.gg/CODE,
+        // discord.com/invite/CODE), and channel links (discord.com/channels/...)
+        value = url;
       } else if (platform === "email") {
         value = url.replace(/^mailto:/, "");
-      } else if (platform === "website") {
+      } else if (platform === "website" || platform === "custom") {
         value = url;
       } else {
         value = pathParts[pathParts.length - 1] || "";
@@ -210,7 +209,8 @@ export const generateUrl = (platform: string, input: string, countryCode?: strin
       if (!code) return ""; // Country code required for Viber
       const fullViber = formatPhoneNumber(trimmed, code);
       if (!fullViber) return "";
-      return `viber://chat?number=${fullViber}`;
+      // Include + prefix (encoded as %2B) for cross-platform reliability on iOS and Android
+      return `viber://chat?number=%2B${fullViber}`;
     }
     
     case "telegram": {
@@ -335,18 +335,31 @@ export const generateUrl = (platform: string, input: string, countryCode?: strin
     }
     
     case "discord": {
+      // Accept all valid Discord link types:
+      // - Server invites: https://discord.gg/CODE or https://discord.com/invite/CODE
+      // - User profiles:  https://discord.com/users/ID  (numeric ID)
+      // - Channel links:  https://discord.com/channels/...
       if (trimmed.startsWith("http")) {
-        if (trimmed.includes("discord.com/users/")) {
-          return trimmed;
-        }
-        return "";
+        const isValidDiscord =
+          trimmed.includes("discord.gg/") ||
+          trimmed.includes("discord.com/invite/") ||
+          trimmed.includes("discord.com/users/") ||
+          trimmed.includes("discord.com/channels/");
+        return isValidDiscord ? trimmed : "";
       }
+      // Bare invite code (e.g. "abc123" or "my-server")
+      if (/^[a-zA-Z0-9-]+$/.test(trimmed) && !/^\d+$/.test(trimmed)) {
+        return `https://discord.gg/${trimmed}`;
+      }
+      // Numeric user ID
       if (/^\d+$/.test(trimmed)) {
         return `https://discord.com/users/${trimmed}`;
       }
-      if (trimmed.startsWith("discord.com/users/")) {
-        return `https://${trimmed}`;
-      }
+      // Partial URLs without scheme
+      if (trimmed.startsWith("discord.gg/")) return `https://${trimmed}`;
+      if (trimmed.startsWith("discord.com/invite/")) return `https://${trimmed}`;
+      if (trimmed.startsWith("discord.com/users/")) return `https://${trimmed}`;
+      if (trimmed.startsWith("discord.com/channels/")) return `https://${trimmed}`;
       return "";
     }
     
@@ -358,7 +371,17 @@ export const generateUrl = (platform: string, input: string, countryCode?: strin
       if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
       return trimmed ? `https://${trimmed.replace(/^www\./, "")}` : "";
     }
-    
+
+    case "custom": {
+      // Accept any URL the user types — pass through as-is.
+      // Auto-add https:// if there is no scheme so the link is always absolute.
+      if (!trimmed) return "";
+      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
+      // Preserve other explicit schemes (mailto:, tel:, viber://, etc.)
+      if (trimmed.includes("://") || trimmed.startsWith("mailto:") || trimmed.startsWith("tel:")) return trimmed;
+      return `https://${trimmed}`;
+    }
+
     default:
       return trimmed;
   }
