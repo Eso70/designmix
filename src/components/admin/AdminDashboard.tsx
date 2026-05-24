@@ -759,7 +759,7 @@ export const AdminDashboard = memo(function AdminDashboard({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8 lg:py-10 relative">
           {/* Stats Cards */}
           <div className="mb-6 sm:mb-8">
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               <StatCard
                 icon={FileText}
                 label="کۆی پەیجەکان"

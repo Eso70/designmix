@@ -39,16 +39,19 @@ export const StatCard = memo(function StatCard({ icon: Icon, label, value, color
   };
 
   return (
-    <div className={`group relative rounded-2xl ${colorClasses[color]} p-5 sm:p-6 border transition-all duration-300 hover:shadow-lg overflow-hidden backdrop-blur-sm`}>
-      <div className="relative flex items-center gap-4">
-        <div className={`p-3 rounded-xl ${iconBgClasses[color]} border group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
-          <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${iconColorClasses[color]}`} />
+    <div className={`group relative rounded-xl sm:rounded-2xl ${colorClasses[color]} p-3 sm:p-5 md:p-6 border transition-all duration-300 hover:shadow-lg overflow-hidden backdrop-blur-sm`}>
+      {/* Mobile: stack icon above text. sm+: side-by-side row */}
+      <div className="relative flex flex-col items-center gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+        <div className={`p-2 sm:p-3 rounded-lg sm:rounded-xl ${iconBgClasses[color]} border group-hover:scale-110 transition-transform duration-300 shadow-sm flex-shrink-0`}>
+          <Icon className={`h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 ${iconColorClasses[color]}`} />
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="text-2xl sm:text-3xl font-bold font-kurdish mb-1 text-slate-700">{typeof value === "number" ? value.toLocaleString() : value}</div>
-          <div className="text-xs sm:text-sm text-slate-600 font-kurdish font-medium">{label}</div>
+        <div className="flex-1 min-w-0 text-center sm:text-start">
+          <div className="text-lg sm:text-2xl md:text-3xl font-bold font-kurdish mb-0.5 sm:mb-1 text-slate-700 leading-tight">
+            {typeof value === "number" ? value.toLocaleString() : value}
+          </div>
+          <div className="text-[10px] sm:text-xs md:text-sm text-slate-600 font-kurdish font-medium leading-tight">{label}</div>
           {subtitle && (
-            <div className="text-xs text-slate-500 font-kurdish mt-1.5">{subtitle}</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 font-kurdish mt-1">{subtitle}</div>
           )}
         </div>
       </div>
