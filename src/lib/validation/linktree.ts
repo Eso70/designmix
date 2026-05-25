@@ -19,6 +19,7 @@ const PLATFORMS = [
   "linkedin",
   "snapchat",
   "discord",
+  "custom",
 ] as const;
 
 // Background color validation - must match CreateLinktreeModal BACKGROUND_COLORS
@@ -126,6 +127,9 @@ const URL_PATTERNS = {
   // Examples: /add/username, /t/CODE, /p/PROFILE_ID, /stories/USERNAME, /spotlight/SPOTLIGHT_ID, snapchat.com, www.snapchat.com
   snapchat: /^https?:\/\/(www\.)?snapchat\.com\/.+$/i,
   discord: /^https?:\/\/discord\.com\/users\/\d+$/i,
+  // Custom: accept http(s) and other valid URL schemes (mailto:, tel:, viber://, ftp://, etc.)
+  // This is intentionally permissive to let the client generate various schemes for custom links.
+  custom: /^(?:[a-z][a-z0-9+\-.]*:\/\/).+/i,
 };
 
 // Link metadata schema

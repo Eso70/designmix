@@ -209,8 +209,8 @@ export const generateUrl = (platform: string, input: string, countryCode?: strin
       if (!code) return ""; // Country code required for Viber
       const fullViber = formatPhoneNumber(trimmed, code);
       if (!fullViber) return "";
-      // Include + prefix (encoded as %2B) for cross-platform reliability on iOS and Android
-      return `viber://chat?number=%2B${fullViber}`;
+      // Include + prefix for cross-platform reliability on iOS and Android
+      return `viber://chat?number=+${fullViber}`;
     }
     
     case "telegram": {
