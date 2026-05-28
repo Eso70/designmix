@@ -89,7 +89,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
             {/* Avatar with Paper Effect */}
             <div className="relative inline-block mb-4 sm:mb-5 md:mb-6">
               <div 
-                className="absolute inset-0 bg-gradient-to-br from-orange-200 to-rose-200 rounded-full" 
+                className="absolute inset-0 bg-linear-to-br from-orange-200 to-rose-200 rounded-full" 
                 style={{
                   transform: "translateZ(0)",
                   backfaceVisibility: "hidden",
@@ -139,7 +139,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
             >
               {linktree.name}
             </h1>
-            <div className="inline-block bg-gradient-to-r from-orange-100 to-rose-100 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full mb-6 transform -rotate-1">
+            <div className="inline-block bg-linear-to-r from-orange-100 to-rose-100 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full mb-6 transform -rotate-1">
               <p className="text-xs sm:text-sm font-semibold text-orange-800">
                 {subtitle}
               </p>
@@ -147,7 +147,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
 
             {/* Decorative Divider with Scissors */}
             <div className="flex items-center justify-center gap-2 mt-4" aria-hidden>
-              <div className="w-8 h-1 bg-gradient-to-r from-transparent via-orange-300 to-transparent" />
+              <div className="w-8 h-1 bg-linear-to-r from-transparent via-orange-300 to-transparent" />
               <svg 
                 className="w-4 h-4 text-orange-400"
                 fill="none" 
@@ -156,7 +156,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
               </svg>
-              <div className="w-8 h-1 bg-gradient-to-r from-transparent via-orange-300 to-transparent" />
+              <div className="w-8 h-1 bg-linear-to-r from-transparent via-orange-300 to-transparent" />
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
                 >
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-orange-200 to-rose-200 rounded-lg sm:rounded-xl transform rotate-6" aria-hidden />
+                      <div className="absolute inset-0 bg-linear-to-br from-orange-200 to-rose-200 rounded-lg sm:rounded-xl transform rotate-6" aria-hidden />
                       <div className="relative w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md border-2 border-orange-100">
                         {icon}
                       </div>
@@ -208,7 +208,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
                     <span className="text-gray-800 font-semibold text-sm sm:text-base md:text-lg flex-1 text-left min-w-0 truncate">
                       {label}
                     </span>
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-orange-100 to-rose-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-linear-to-br from-orange-100 to-rose-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>

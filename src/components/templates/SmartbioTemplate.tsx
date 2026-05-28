@@ -174,7 +174,7 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
                     }}
                   >
                     <div 
-                      className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out"
+                      className="absolute inset-0 w-1/2 bg-linear-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out"
                       style={{
                         filter: 'blur(10px)',
                         transform: "translateZ(0)",
@@ -202,7 +202,7 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
       </div>
 
       {/* Links Section - White Background */}
-      <div className="px-4 sm:px-6 pb-4 bg-gradient-to-b from-white via-gray-50/30 to-white">
+      <div className="px-4 sm:px-6 pb-4 bg-linear-to-b from-white via-gray-50/30 to-white">
         <div className="mx-auto pt-2 sm:pt-3 md:pt-4 space-y-4 sm:space-y-4.5 md:space-y-5 px-4 max-w-2xl">
           {allLinks.map((link, index) => {
             const platformName = getPlatformName(link.platform);
@@ -270,7 +270,7 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
                   }}
                 >
                   <div 
-                    className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out"
+                    className="absolute inset-0 w-1/2 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out"
                     style={{
                       filter: 'blur(12px)',
                       transform: "translateZ(0)",
@@ -288,13 +288,13 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
                   }}
                 />
                 <div className="relative z-10 flex items-center gap-2.5 sm:gap-3 md:gap-4" dir="ltr">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     {icon}
                   </div>
                   <span className="text-sm sm:text-base md:text-lg font-semibold text-white text-left flex-1 min-w-0 truncate font-kurdish">
                     {label}
                   </span>
-                  <div className="text-white/60 hover:text-white transition-colors flex-shrink-0">
+                  <div className="text-white/60 hover:text-white transition-colors shrink-0">
                     <svg
                       width="20"
                       height="20"

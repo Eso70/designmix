@@ -126,7 +126,7 @@ export const HeroImageTemplate = memo(function HeroImageTemplate({
   return (
     <div className="relative w-full min-h-screen overflow-y-auto" style={backgroundStyle}>
       {/* Hero Image Section - Full width, Half viewport height */}
-      <div className="relative w-full h-[50vh] min-h-[400px] overflow-hidden">
+      <div className="relative w-full h-[50vh] min-h-100 overflow-hidden">
         <Image
           src={profileImage}
           alt={linktree.name}

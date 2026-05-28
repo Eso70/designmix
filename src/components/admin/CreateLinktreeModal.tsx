@@ -1328,7 +1328,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
           className="flex flex-col h-full max-h-[90vh]"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-gray-100/50 p-4 sm:p-5 md:p-6 bg-gradient-to-r from-white to-slate-50/30">
+          <div className="flex items-center justify-between border-b border-gray-100/50 p-4 sm:p-5 md:p-6 bg-linear-to-r from-white to-slate-50/30">
             <div className="flex-1 min-w-0">
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-700 truncate">
                 {isEditMode ? "دەستکاریکردنکردنی لینک" : "لینکی نوێ زیاد بکە"}
@@ -1339,11 +1339,11 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
                 {currentStep === "links" && "لینکەکان زیاد بکە"}
               </p>
             </div>
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex items-center justify-center rounded-xl p-2 bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
+                className="flex items-center justify-center rounded-xl p-2 bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
               >
                 <X className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
@@ -1351,31 +1351,31 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
           </div>
 
           {/* Progress Steps */}
-          <div className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 border-b border-gray-100/50 bg-gradient-to-r from-slate-50/50 to-gray-50/50">
+          <div className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 border-b border-gray-100/50 bg-linear-to-r from-slate-50/50 to-gray-50/50">
             <div className="flex items-center gap-1 sm:gap-2">
               <div className={`flex items-center gap-1.5 sm:gap-2 ${currentStep === "basic" ? "text-brand-600" : "text-brand-400"}`}>
                 <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium shadow-sm transition-all duration-300 ${
-                  currentStep === "basic" ? "bg-gradient-to-br from-brand-500 to-brand-500 text-white" : "bg-gradient-to-br from-brand-50 to-brand-50 text-brand-600 border border-brand-100"
+                  currentStep === "basic" ? "bg-linear-to-br from-brand-500 to-brand-500 text-white" : "bg-linear-to-br from-brand-50 to-brand-50 text-brand-600 border border-brand-100"
                 }`}>
                   {currentStep === "basic" ? "1" : "✓"}
                 </div>
                 <span className="text-xs sm:text-sm hidden sm:block"> زانیارییەکان</span>
               </div>
-              <div className={`h-0.5 flex-1 transition-colors duration-300 ${currentStep === "select" || currentStep === "links" ? "bg-gradient-to-r from-brand-300 to-brand-300" : "bg-slate-200"}`} />
+              <div className={`h-0.5 flex-1 transition-colors duration-300 ${currentStep === "select" || currentStep === "links" ? "bg-linear-to-r from-brand-300 to-brand-300" : "bg-slate-200"}`} />
               <div className={`flex items-center gap-1.5 sm:gap-2 ${currentStep === "select" ? "text-[#47C0B9]" : currentStep === "links" ? "text-[#47C0B9]/70" : "text-slate-400"}`}>
                 <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium shadow-sm transition-all duration-300 ${
-                  currentStep === "select" ? "bg-gradient-to-br from-brand-500 to-brand-500 text-white" : 
-                  currentStep === "links" ? "bg-gradient-to-br from-brand-50 to-brand-50 text-brand-600 border border-brand-100" : 
-                  "bg-gradient-to-br from-slate-50 to-gray-50 text-slate-400 border border-slate-100"
+                  currentStep === "select" ? "bg-linear-to-br from-brand-500 to-brand-500 text-white" : 
+                  currentStep === "links" ? "bg-linear-to-br from-brand-50 to-brand-50 text-brand-600 border border-brand-100" : 
+                  "bg-linear-to-br from-slate-50 to-gray-50 text-slate-400 border border-slate-100"
                 }`}>
                   {currentStep === "links" ? "✓" : "2"}
                 </div>
                 <span className="text-xs sm:text-sm hidden sm:block">پلاتفۆڕمەکان</span>
               </div>
-              <div className={`h-0.5 flex-1 transition-colors duration-300 ${currentStep === "links" ? "bg-gradient-to-r from-brand-300 to-brand-300" : "bg-slate-200"}`} />
+              <div className={`h-0.5 flex-1 transition-colors duration-300 ${currentStep === "links" ? "bg-linear-to-r from-brand-300 to-brand-300" : "bg-slate-200"}`} />
               <div className={`flex items-center gap-1.5 sm:gap-2 ${currentStep === "links" ? "text-brand-600" : "text-slate-400"}`}>
                 <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium shadow-sm transition-all duration-300 ${
-                  currentStep === "links" ? "bg-gradient-to-br from-brand-500 to-brand-500 text-white" : "bg-gradient-to-br from-slate-50 to-gray-50 text-slate-400 border border-slate-100"
+                  currentStep === "links" ? "bg-linear-to-br from-brand-500 to-brand-500 text-white" : "bg-linear-to-br from-slate-50 to-gray-50 text-slate-400 border border-slate-100"
                 }`}>3</div>
                 <span className="text-xs sm:text-sm hidden sm:block">لینکەکان</span>
               </div>
@@ -1384,7 +1384,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
 
           {/* Content */}
           <div 
-            className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-6 bg-gradient-to-br from-white to-slate-50/20"
+            className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-6 bg-linear-to-br from-white to-slate-50/20"
             style={{ 
               scrollbarWidth: "thin", 
               scrollbarColor: "rgba(156,163,175,0.5) transparent",
@@ -1472,12 +1472,12 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 border-t border-gray-100/50 p-4 sm:p-5 md:p-6 bg-gradient-to-r from-white to-slate-50/30">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 border-t border-gray-100/50 p-4 sm:p-5 md:p-6 bg-linear-to-r from-white to-slate-50/30">
             {currentStep !== "basic" && (
               <button
                 type="button"
                 onClick={handleBackStep}
-                className="w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 border border-slate-100 text-slate-600 hover:text-slate-700 text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm hover:shadow"
+                className="w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 border border-slate-100 text-slate-600 hover:text-slate-700 text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm hover:shadow"
               >
                 گەڕانەوە
               </button>
@@ -1485,7 +1485,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
             <button
               type="button"
               onClick={onClose}
-              className={`w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 border border-slate-100 text-slate-600 hover:text-slate-700 text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm hover:shadow ${currentStep === "basic" ? "sm:flex-1" : ""}`}
+              className={`w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 border border-slate-100 text-slate-600 hover:text-slate-700 text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm hover:shadow ${currentStep === "basic" ? "sm:flex-1" : ""}`}
             >
               هەڵوەشاندنەوە
             </button>
@@ -1522,7 +1522,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
                   }
                 }}
                 disabled={isSubmitting || !hasValidLinks || currentStep !== "links"}
-                className="w-full sm:flex-1 rounded-xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]"
+                className="w-full sm:flex-1 rounded-xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]"
               >
                 {isSubmitting ? (
                   <>

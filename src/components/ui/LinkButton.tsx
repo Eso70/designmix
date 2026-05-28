@@ -82,7 +82,7 @@ export const LinkButton = memo(function LinkButton({
       
       {/* Additional spotlight on hover - desktop only */}
       <div 
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full sm:group-hover:translate-x-full transition-transform duration-500 sm:duration-700 ease-in-out hidden sm:block"
+        className="absolute inset-0 bg-linear-to-r from-transparent via-white/15 to-transparent -translate-x-full sm:group-hover:translate-x-full transition-transform duration-500 sm:duration-700 ease-in-out hidden sm:block"
         style={{
           transform: "translateZ(0)",
           backfaceVisibility: "hidden"
@@ -91,7 +91,7 @@ export const LinkButton = memo(function LinkButton({
       
       {/* Top gradient overlay - desktop only */}
       <div 
-        className="absolute inset-0 bg-gradient-to-t from-black/8 via-transparent to-transparent opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 sm:duration-500 hidden sm:block"
+        className="absolute inset-0 bg-linear-to-t from-black/8 via-transparent to-transparent opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 sm:duration-500 hidden sm:block"
         style={{
           transform: "translateZ(0)",
           backfaceVisibility: "hidden"

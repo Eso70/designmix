@@ -145,7 +145,7 @@ export const ColorfulPillsTemplate = memo(function ColorfulPillsTemplate({
                   key={link.id}
                   type="button"
                   onClick={() => handleLinkClick(link.id, link.url, link.platform, link.default_message)}
-                  className="group block w-full bg-gradient-to-r rounded-full px-6 py-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="group block w-full bg-linear-to-r rounded-full px-6 py-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                   style={{
                     background: `linear-gradient(to right, ${colors.from}, ${colors.via}, ${colors.to})`,
                     animation: `slideIn 0.5s ease-out ${index * 0.1}s both`,

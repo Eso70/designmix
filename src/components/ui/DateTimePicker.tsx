@@ -239,12 +239,12 @@ export function DateTimePicker({
     <div ref={containerRef} className="relative">
       <div
         onClick={handleInputClick}
-        className={`w-full rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-sm text-left bg-gradient-to-br from-white to-slate-50/50 border border-slate-200 shadow-sm transition-all duration-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-[#47C0B9]/30 focus-within:border-[#47C0B9] cursor-pointer flex items-center gap-2 hover:shadow-md hover:border-[#47C0B9]/30 ${className}`}
+        className={`w-full rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-sm text-left bg-linear-to-br from-white to-slate-50/50 border border-slate-200 shadow-sm transition-all duration-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-[#47C0B9]/30 focus-within:border-[#47C0B9] cursor-pointer flex items-center gap-2 hover:shadow-md hover:border-[#47C0B9]/30 ${className}`}
         style={style}
         onFocus={onFocus}
         onBlur={onBlur}
       >
-        <Calendar className="h-4 w-4 text-slate-400 flex-shrink-0" />
+        <Calendar className="h-4 w-4 text-slate-400 shrink-0" />
         <span className={`flex-1 ${displayValue ? "text-slate-700" : "text-slate-400"}`}>
           {displayValue || placeholder}
         </span>
@@ -253,7 +253,7 @@ export function DateTimePicker({
       {isOpen && (
         <div className="fixed z-[100] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[380px] rounded-2xl overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl"
         >
-          <div className="p-4 bg-gradient-to-br from-white to-slate-50/20">
+          <div className="p-4 bg-linear-to-br from-white to-slate-50/20">
             {showYearPicker ? (
               /* Year Picker Grid */
               <div>
@@ -282,8 +282,8 @@ export function DateTimePicker({
                             isPast
                               ? "text-slate-300 cursor-not-allowed bg-slate-50/50"
                               : isSelected
-                              ? "bg-gradient-to-br from-[#47C0B9] to-[#47C0B9] text-white shadow-lg font-semibold"
-                              : "text-slate-600 hover:bg-gradient-to-br hover:from-slate-50 hover:to-gray-50 border border-slate-100 hover:border-[#47C0B9]/30"
+                              ? "bg-linear-to-br from-[#47C0B9] to-[#47C0B9] text-white shadow-lg font-semibold"
+                              : "text-slate-600 hover:bg-linear-to-br hover:from-slate-50 hover:to-gray-50 border border-slate-100 hover:border-[#47C0B9]/30"
                           }`}
                         >
                           {year}
@@ -300,7 +300,7 @@ export function DateTimePicker({
                   <button
                     type="button"
                     onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-                    className="p-2 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all duration-300 text-slate-600 hover:text-slate-700 flex-shrink-0 border border-slate-100 shadow-sm hover:shadow"
+                    className="p-2 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all duration-300 text-slate-600 hover:text-slate-700 shrink-0 border border-slate-100 shadow-sm hover:shadow"
                     aria-label="Previous month"
                   >
                     <ChevronLeft className="h-4 w-4" />
@@ -309,7 +309,7 @@ export function DateTimePicker({
                   <button
                     type="button"
                     onClick={() => setShowYearPicker(true)}
-                    className="text-lg font-semibold text-slate-700 hover:text-[#47C0B9] transition-colors duration-300 px-3 py-1 rounded-xl hover:bg-gradient-to-br hover:from-[#47C0B9]/10 hover:to-[#47C0B9]/10 border border-transparent hover:border-[#47C0B9]/30"
+                    className="text-lg font-semibold text-slate-700 hover:text-[#47C0B9] transition-colors duration-300 px-3 py-1 rounded-xl hover:bg-linear-to-br hover:from-[#47C0B9]/10 hover:to-[#47C0B9]/10 border border-transparent hover:border-[#47C0B9]/30"
                   >
                     {formatDate(currentMonth, "yyyy")}
                   </button>
@@ -317,7 +317,7 @@ export function DateTimePicker({
                   <button
                     type="button"
                     onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                    className="p-2 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all duration-300 text-slate-600 hover:text-slate-700 flex-shrink-0 border border-slate-100 shadow-sm hover:shadow"
+                    className="p-2 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all duration-300 text-slate-600 hover:text-slate-700 shrink-0 border border-slate-100 shadow-sm hover:shadow"
                     aria-label="Next month"
                   >
                     <ChevronRight className="h-4 w-4" />
@@ -348,10 +348,10 @@ export function DateTimePicker({
                         onClick={() => handleDateSelect(day)}
                         className={`aspect-square rounded-xl text-sm transition-all duration-300 ${
                           isSelected
-                            ? "bg-gradient-to-br from-[#47C0B9] to-[#47C0B9] text-white shadow-lg scale-105 font-semibold"
+                            ? "bg-linear-to-br from-[#47C0B9] to-[#47C0B9] text-white shadow-lg scale-105 font-semibold"
                             : isCurrentDay
-                            ? "bg-gradient-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 text-[#47C0B9] font-semibold border-2 border-[#47C0B9]/40"
-                            : "text-slate-600 hover:bg-gradient-to-br hover:from-slate-50 hover:to-gray-50"
+                            ? "bg-linear-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 text-[#47C0B9] font-semibold border-2 border-[#47C0B9]/40"
+                            : "text-slate-600 hover:bg-linear-to-br hover:from-slate-50 hover:to-gray-50"
                         }`}
                       >
                         {formatDate(day, "d")}
@@ -367,7 +367,7 @@ export function DateTimePicker({
               <button
                 type="button"
                 onClick={handleCancel}
-                className="flex-1 px-4 py-2 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 border border-slate-100 text-sm font-medium text-slate-600 hover:text-slate-700 transition-all duration-300 shadow-sm hover:shadow flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 border border-slate-100 text-sm font-medium text-slate-600 hover:text-slate-700 transition-all duration-300 shadow-sm hover:shadow flex items-center justify-center gap-2"
               >
                 <X className="h-4 w-4" />
                 Cancel
@@ -376,7 +376,7 @@ export function DateTimePicker({
                 type="button"
                 onClick={handleOk}
                 disabled={!tempSelectedDate}
-                className="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9] text-white text-sm font-medium transition-all duration-300 disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:shadow-none"
+                className="flex-1 px-4 py-2 rounded-xl bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9] text-white text-sm font-medium transition-all duration-300 disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:shadow-none"
               >
                 <Check className="h-4 w-4" />
                 OK

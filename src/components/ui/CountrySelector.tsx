@@ -313,7 +313,7 @@ export function CountrySelector({
     return (
       <button
         type="button"
-        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-[100px] shadow-sm ${className}`}
+        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-linear-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-[100px] shadow-sm ${className}`}
       >
         <span className="font-medium">+{value || "964"}</span>
         <ChevronDown className="h-4 w-4 text-slate-400" />
@@ -332,15 +332,15 @@ export function CountrySelector({
       
       {/* Modal container - centered like template selector */}
       <div 
-        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[500px] max-w-[500px] max-h-[600px] overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300"
+        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-125 max-w-125 max-h-150 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300"
         dir="ltr"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="border-b border-gray-100/50 bg-gradient-to-r from-white to-[#47C0B9]/10">
+        <div className="border-b border-gray-100/50 bg-linear-to-r from-white to-[#47C0B9]/10">
           <div className="flex items-center justify-between p-4 sm:p-5">
             <div className="flex items-center gap-3">
-              <div className="rounded-xl bg-gradient-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 border border-[#47C0B9]/30 p-2 shadow-sm">
+              <div className="rounded-xl bg-linear-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 border border-[#47C0B9]/30 p-2 shadow-sm">
                 <Globe className="h-4 w-4 text-[#47C0B9]" />
               </div>
               <div>
@@ -356,7 +356,7 @@ export function CountrySelector({
             <button
               type="button"
               onClick={handleClose}
-              className="flex-shrink-0 rounded-xl p-2 bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
+              className="shrink-0 rounded-xl p-2 bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -365,7 +365,7 @@ export function CountrySelector({
         </div>
 
         {/* Search Input */}
-        <div className="p-3 sm:p-4 border-b border-gray-100/50 bg-gradient-to-br from-white to-slate-50/20">
+        <div className="p-3 sm:p-4 border-b border-gray-100/50 bg-linear-to-br from-white to-slate-50/20">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <input
@@ -394,7 +394,7 @@ export function CountrySelector({
 
         {/* Countries List */}
         <div 
-          className="overflow-y-auto p-2 bg-gradient-to-br from-white to-slate-50/20"
+          className="overflow-y-auto p-2 bg-linear-to-br from-white to-slate-50/20"
           style={{ 
             scrollbarWidth: "thin", 
             scrollbarColor: "rgba(156,163,175,0.5) transparent",
@@ -416,8 +416,8 @@ export function CountrySelector({
                     onClick={() => handleSelect(country.code)}
                     className={`w-full px-4 py-3 text-left text-sm transition-all duration-300 rounded-xl ${
                       isSelected
-                        ? "bg-gradient-to-r from-[#47C0B9]/10 to-[#47C0B9]/10 text-[#47C0B9] border-l-4 border-[#47C0B9] shadow-md font-semibold"
-                        : "text-slate-600 hover:bg-gradient-to-r hover:from-slate-50 hover:to-gray-50 hover:text-slate-700"
+                        ? "bg-linear-to-r from-[#47C0B9]/10 to-[#47C0B9]/10 text-[#47C0B9] border-l-4 border-[#47C0B9] shadow-md font-semibold"
+                        : "text-slate-600 hover:bg-linear-to-r hover:from-slate-50 hover:to-gray-50 hover:text-slate-700"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
@@ -441,7 +441,7 @@ export function CountrySelector({
       <button
         type="button"
         onClick={handleToggle}
-        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-[100px] shadow-sm ${className}`}
+        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-linear-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-[100px] shadow-sm ${className}`}
       >
         <span className="font-medium">+{selectedCountry.code}</span>
         <ChevronDown

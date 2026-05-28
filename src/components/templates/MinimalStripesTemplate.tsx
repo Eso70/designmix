@@ -51,7 +51,7 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
       <div className="relative z-10 flex w-full max-w-2xl flex-col items-center gap-5 sm:gap-6 md:gap-8">
         <section className="w-full max-w-xl rounded-2xl sm:rounded-[28px] md:rounded-[32px] border border-white/30 bg-white/16 px-4 py-6 sm:px-5 sm:py-7 md:px-6 md:py-8 text-center backdrop-blur-3xl shadow-[0_26px_70px_rgba(15,12,45,0.32)]">
           <div className="relative mx-auto mb-5 sm:mb-6 md:mb-7 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28">
-            <div className="absolute inset-[-8px] sm:inset-[-9px] md:inset-[-10px] rounded-full border-2 sm:border-3 md:border-4 border-white/40 bg-white/12" aria-hidden />
+            <div className="absolute -inset-2 sm:-inset-2.25 md:-inset-2.5 rounded-full border-2 sm:border-3 md:border-4 border-white/40 bg-white/12" aria-hidden />
             <div 
               className="relative h-full w-full overflow-hidden rounded-full border-2 sm:border-3 md:border-4 border-white/35 shadow-[0_16px_40px_rgba(0,0,0,0.22)]"
               style={{
@@ -112,11 +112,11 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
                   type="button"
                   dir="ltr"
                   onClick={() => onLinkClick(link.id, link.url, link.platform, link.default_message)}
-                  className="group flex w-full items-center justify-between rounded-xl sm:rounded-[20px] md:rounded-[22px] bg-white/95 px-4 py-3.5 sm:px-5 sm:py-4 text-left shadow-[0_18px_36px_rgba(0,0,0,0.14)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(0,0,0,0.18)] focus:outline-none focus:ring-2 focus:ring-white/60"
+                  className="group flex w-full items-center justify-between rounded-xl sm:rounded-4xl md:rounded-[22px] bg-white/95 px-4 py-3.5 sm:px-5 sm:py-4 text-left shadow-[0_18px_36px_rgba(0,0,0,0.14)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(0,0,0,0.18)] focus:outline-none focus:ring-2 focus:ring-white/60"
                 >
                   <span className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
                     <span
-                      className="flex h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 items-center justify-center rounded-xl sm:rounded-2xl transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
+                      className="flex h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 items-center justify-center rounded-xl sm:rounded-2xl transition-transform duration-300 group-hover:scale-105 shrink-0"
                       style={{
                         background: `linear-gradient(135deg, ${colors.from}, ${colors.via}, ${colors.to})`,
                       }}
@@ -128,7 +128,7 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
                     </span>
                   </span>
                   <svg
-                    className="h-4 w-4 sm:h-5 sm:w-5 text-slate-400 transition-all duration-300 group-hover:translate-x-2 group-hover:text-slate-700 flex-shrink-0 ml-2"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-slate-400 transition-all duration-300 group-hover:translate-x-2 group-hover:text-slate-700 shrink-0 ml-2"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

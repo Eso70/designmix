@@ -169,11 +169,11 @@ const LinkItem = memo(function LinkItem({
           onChange={(icon) => onUpdateCustomIcon(linkId, icon)}
           customTrigger={
             <div 
-              className={`p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br flex-shrink-0 relative overflow-hidden`}
+              className={`p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-linear-to-br shrink-0 relative overflow-hidden`}
               style={customColor ? { background: customColor } : { background: 'var(--tw-gradient-from)' }}
             >
               {/* We apply the custom color as plain background style, or default to gradients */}
-              {!customColor && <div className={`absolute inset-0 bg-gradient-to-br ${platform.color}`} />}
+              {!customColor && <div className={`absolute inset-0 bg-linear-to-br ${platform.color}`} />}
               {/* If customIcon is provided, render it instead of the default icon */}
               {customIcon && CUSTOM_ICONS_MAP[customIcon] ? (
                 React.createElement(CUSTOM_ICONS_MAP[customIcon], { className: "h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white relative z-10" })
@@ -190,7 +190,7 @@ const LinkItem = memo(function LinkItem({
               <CountrySelector
                 value={countryCode || "964"}
                 onChange={handleCountryCodeChange}
-                className="flex-shrink-0"
+                className="shrink-0"
               />
             )}
             <input
@@ -222,13 +222,13 @@ const LinkItem = memo(function LinkItem({
           
           {/* Display Name and Color Customization Input Row */}
           <div className="flex items-center gap-2 w-full">
-            <div className="relative flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:h-12 overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-300 hover:border-gray-400 focus-within:ring-2 focus-within:ring-[#47C0B9]/30 transition-all cursor-pointer shadow-sm group">
+            <div className="relative shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:h-12 overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-300 hover:border-gray-400 focus-within:ring-2 focus-within:ring-[#47C0B9]/30 transition-all cursor-pointer shadow-sm group">
               <input 
                 type="color"
                 value={customColor || "#000000"}
                 onChange={handleCustomColorChange}
                 title="ڕەنگی دوگمە"
-                className="absolute inset-[0px] cursor-pointer appearance-none border-none bg-transparent w-[200%] h-[200%] -top-2 -left-2"
+                className="absolute inset-0 cursor-pointer appearance-none border-none bg-transparent w-[200%] h-[200%] -top-2 -left-2"
               />
               {!customColor && (
                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-gray-50 text-[10px] sm:text-xs text-gray-500 font-bold group-hover:bg-gray-100 transition-colors">ڕەنگ</div>
@@ -246,7 +246,7 @@ const LinkItem = memo(function LinkItem({
             <button
               type="button"
               onClick={handleToggleDisplayName}
-              className="flex-shrink-0 px-2 sm:px-3 py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl md:rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 transition-colors text-xs sm:text-sm md:text-base font-kurdish"
+              className="shrink-0 px-2 sm:px-3 py-2.5 sm:py-3 md:py-3.5 rounded-lg sm:rounded-xl md:rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 transition-colors text-xs sm:text-sm md:text-base font-kurdish"
               title="Kurdish/English"
             >
               {((displayName || "").trim() === getPlatformNameKurdish(platform.id)) ? "English" : "کوردی"}

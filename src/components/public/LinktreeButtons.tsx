@@ -45,11 +45,11 @@ const LinkItem = memo(function LinkItem({
       gradientFrom={colors.from}
       gradientVia={colors.via}
       gradientTo={colors.to}
-      className="mt-0 min-h-[48px] sm:min-h-[52px] md:min-h-[56px]"
+      className="mt-0 min-h-12 sm:min-h-13 md:min-h-14"
     >
       <div className="flex items-center gap-2.5 sm:gap-3 md:gap-4 lg:gap-5">
         {/* Icon */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           {getPlatformIcon(link.platform, undefined, (link.metadata as Record<string, string>)?.custom_icon)}
         </div>
         <span className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white text-left flex-1 min-w-0 truncate">
@@ -57,7 +57,7 @@ const LinkItem = memo(function LinkItem({
         </span>
       </div>
       {/* Arrow indicator - pointing right for LTR */}
-      <div className="text-white/60 hover:text-white transition-colors flex-shrink-0">
+      <div className="text-white/60 hover:text-white transition-colors shrink-0">
         <svg
           width="20"
           height="20"

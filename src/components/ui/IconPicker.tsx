@@ -69,7 +69,7 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
     <button
       type="button"
       onClick={() => setIsOpen(!isOpen)}
-      className="relative flex items-center justify-center flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:h-12 overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-300 hover:border-gray-400 focus-within:ring-2 focus-within:ring-[#47C0B9]/30 transition-all cursor-pointer shadow-sm group bg-white"
+      className="relative flex items-center justify-center shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:h-12 overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-300 hover:border-gray-400 focus-within:ring-2 focus-within:ring-[#47C0B9]/30 transition-all cursor-pointer shadow-sm group bg-white"
       title="ئاڕاستەی ئایکۆن (Choose Icon)"
     >
       {value && CUSTOM_ICONS_MAP[value] ? (
@@ -93,12 +93,12 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
       />
       
       <div 
-        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[500px] md:w-[600px] max-w-[600px] max-h-[85vh] sm:max-h-[600px] overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col"
+        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-125 md:w-150 max-w-150 max-h-[85vh] sm:max-h-150 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col"
         dir="ltr"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="border-b border-gray-100/50 bg-gradient-to-r from-white to-[#47C0B9]/10 flex-shrink-0">
+        <div className="border-b border-gray-100/50 bg-linear-to-r from-white to-[#47C0B9]/10 shrink-0">
           <div className="flex items-center justify-between p-4 sm:p-5">
             <h2 className="text-lg sm:text-xl font-bold text-slate-700">
               ئایکۆن هەڵبژێرە (Choose Icon)
@@ -106,7 +106,7 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="flex-shrink-0 rounded-xl p-2 bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
+              className="shrink-0 rounded-xl p-2 bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -115,7 +115,7 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
         </div>
 
         {/* Search */}
-        <div className="p-3 sm:p-4 border-b border-gray-100/50 bg-gradient-to-br from-white to-slate-50/20 flex-shrink-0">
+        <div className="p-3 sm:p-4 border-b border-gray-100/50 bg-linear-to-br from-white to-slate-50/20 shrink-0">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <input
@@ -143,7 +143,7 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
         </div>
 
         {/* Grid */}
-        <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-br from-white to-slate-50/20"
+        <div className="flex-1 overflow-y-auto p-4 bg-linear-to-br from-white to-slate-50/20"
            style={{ 
              scrollbarWidth: "thin", 
              scrollbarColor: "rgba(156,163,175,0.5) transparent"
@@ -162,7 +162,7 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
                    }}
                    className={`flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-300 ${
                      isSelected 
-                       ? "bg-gradient-to-br from-[#47C0B9]/10 to-[#47C0B9]/20 text-[#47C0B9] ring-2 ring-[#47C0B9] shadow-sm" 
+                       ? "bg-linear-to-br from-[#47C0B9]/10 to-[#47C0B9]/20 text-[#47C0B9] ring-2 ring-[#47C0B9] shadow-sm" 
                        : "bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-800 border border-slate-100 hover:border-slate-300 shadow-sm hover:shadow"
                    }`}
                    title={iconName}
@@ -184,7 +184,7 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
         </div>
         
         {/* Footer */}
-        <div className="border-t border-gray-100/50 bg-white p-3 flex justify-between items-center flex-shrink-0">
+        <div className="border-t border-gray-100/50 bg-white p-3 flex justify-between items-center shrink-0">
           <button
              type="button"
              onClick={() => {

@@ -178,7 +178,7 @@ export const SoftNeumorphicTemplate = memo(function SoftNeumorphicTemplate({
                 >
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div 
-                      className="w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-white/80 rounded-xl sm:rounded-2xl flex items-center justify-center backdrop-blur-sm flex-shrink-0"
+                      className="w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-white/80 rounded-xl sm:rounded-2xl flex items-center justify-center backdrop-blur-sm shrink-0"
                       style={neumorphicIconOutset}
                     >
                       <div style={{ color: colors.from }}>
@@ -189,7 +189,7 @@ export const SoftNeumorphicTemplate = memo(function SoftNeumorphicTemplate({
                       {label}
                     </span>
                     <div 
-                      className="w-9 h-9 sm:w-10 sm:h-10 bg-white/80 rounded-full flex items-center justify-center backdrop-blur-sm flex-shrink-0"
+                      className="w-9 h-9 sm:w-10 sm:h-10 bg-white/80 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0"
                       style={neumorphicButtonOutset}
                     >
                       <svg 

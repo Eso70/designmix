@@ -214,7 +214,7 @@ export const TerminalTemplate = memo(function TerminalTemplate({
                     <div className="flex items-center gap-2.5 sm:gap-3 md:gap-4">
                       {/* File Type Indicator */}
                       <div 
-                        className="flex-shrink-0 font-mono text-xs"
+                        className="shrink-0 font-mono text-xs"
                         style={{ color: "#10b981" }} // Fixed green
                       >
                         {String(index + 1).padStart(2, '0')}
@@ -222,7 +222,7 @@ export const TerminalTemplate = memo(function TerminalTemplate({
 
                       {/* Icon */}
                       <div 
-                        className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/50 flex items-center justify-center"
+                        className="shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/50 flex items-center justify-center"
                         style={{
                           border: `1px solid rgba(34, 197, 94, 0.3)`, // Fixed green border
                           transform: "translateZ(0)",
@@ -258,7 +258,7 @@ export const TerminalTemplate = memo(function TerminalTemplate({
 
                       {/* Arrow */}
                       <div 
-                        className="flex-shrink-0 font-mono"
+                        className="shrink-0 font-mono"
                         style={{
                           color: "#10b981", // Fixed green
                           textShadow: `0 0 5px #10b98180`, // Fixed green

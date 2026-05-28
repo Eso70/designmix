@@ -90,7 +90,7 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
         >
           <div className="text-center">
             <div className="relative inline-block mb-5">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-300 to-teal-300 rounded-full blur-lg opacity-50" aria-hidden />
+              <div className="absolute inset-0 bg-linear-to-br from-green-300 to-teal-300 rounded-full blur-lg opacity-50" aria-hidden />
               <div 
                 className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 sm:border-3 md:border-4 border-white shadow-xl overflow-hidden"
                 style={{
@@ -177,7 +177,7 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
                 >
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div 
-                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0"
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
                       style={{
                         background: `linear-gradient(to bottom right, #10b981, #34d399)`, // Fixed green gradient
                       }}
@@ -188,7 +188,7 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
                       {label}
                     </span>
                     <div 
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors shrink-0"
                       style={{
                         backgroundColor: `#10b9811a`, // Fixed green background
                       }}
