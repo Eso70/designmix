@@ -9,6 +9,7 @@ import {
   getPlatformName,
   getPlatformColors,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
 
@@ -20,6 +21,7 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   // No state needed - footer always visible, no scrolling
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
@@ -44,9 +46,9 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
   );
 
   // Get first 4 links for social icons in header
-  const socialLinks = useMemo(() => links.slice(0, 4), [links]);
+  const socialLinks = useMemo(() => regularLinks.slice(0, 4), [regularLinks]);
   // All links shown in the white section
-  const allLinks = useMemo(() => links, [links]);
+  const allLinks = useMemo(() => regularLinks, [regularLinks]);
 
   return (
     <div 
@@ -321,6 +323,14 @@ export const SmartbioTemplate = memo(function SmartbioTemplate({
               <p className="text-gray-500 font-kurdish text-sm sm:text-base">هیچ لینکێک نییە</p>
             </div>
           )}
+        </div>
+
+        <div className="mx-auto max-w-2xl px-4">
+          <GpsLocationDisplay
+            gpsLink={gpsLink}
+            textColor="#1f2937"
+            textSecondaryColor={textSecondaryColor}
+          />
         </div>
       </div>
 

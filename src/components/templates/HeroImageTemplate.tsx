@@ -6,6 +6,7 @@ import {
   getPlatformIcon,
   getPlatformName,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { Footer } from "@/components/public/Footer";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
@@ -29,6 +30,7 @@ export const HeroImageTemplate = memo(function HeroImageTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -117,9 +119,9 @@ export const HeroImageTemplate = memo(function HeroImageTemplate({
   };
 
   // Get first 8 links for icon row (expandable for more links)
-  const iconLinks = useMemo(() => links.slice(0, 8), [links]);
+  const iconLinks = useMemo(() => regularLinks.slice(0, 8), [regularLinks]);
   // Remaining links as buttons below
-  const remainingLinks = useMemo(() => links.slice(8), [links]);
+  const remainingLinks = useMemo(() => regularLinks.slice(8), [regularLinks]);
 
   return (
     <div className="relative w-full min-h-screen overflow-y-auto" style={backgroundStyle}>
@@ -362,4 +364,10 @@ export const HeroImageTemplate = memo(function HeroImageTemplate({
       ` }} />
     </div>
   );
+
+          <GpsLocationDisplay
+            gpsLink={gpsLink}
+            textColor={textColor}
+            textSecondaryColor={textSecondaryColor}
+          />
 }, areTemplatePropsEqual);

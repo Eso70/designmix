@@ -9,6 +9,7 @@ import {
   getPlatformIcon,
   getPlatformName,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
 
@@ -20,6 +21,7 @@ export const SoftNeumorphicTemplate = memo(function SoftNeumorphicTemplate({
   theme: _theme, // Not used - template has fixed colors
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -144,7 +146,7 @@ export const SoftNeumorphicTemplate = memo(function SoftNeumorphicTemplate({
 
         {/* Links with Neumorphic Effect */}
         <div className="space-y-3 sm:space-y-4 md:space-y-5 w-full mb-16">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <div 
               className="bg-white/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 text-center backdrop-blur-sm"
               style={neumorphicOutset}
@@ -152,7 +154,7 @@ export const SoftNeumorphicTemplate = memo(function SoftNeumorphicTemplate({
               <p className="text-gray-600 text-xs sm:text-sm">هێشتا هیچ لینکێک نییە</p>
             </div>
           ) : (
-            links.map((link) => {
+            regularLinks.map((link) => {
               const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
               const icon = getPlatformIcon(link.platform, "w-5 h-5 sm:w-6 sm:h-6", (link.metadata as Record<string, string>)?.custom_icon);
               const label = link.display_name || getPlatformName(link.platform);
@@ -205,6 +207,12 @@ export const SoftNeumorphicTemplate = memo(function SoftNeumorphicTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor="#1f2937"
+          textSecondaryColor={textSecondaryColor}
+        />
 
         {/* Footer */}
         <Footer 

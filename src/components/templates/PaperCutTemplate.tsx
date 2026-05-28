@@ -8,6 +8,7 @@ import {
   getPlatformIcon,
   getPlatformName,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
 
@@ -19,6 +20,7 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
   theme: _theme, // Not used - template has fixed colors
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   // PaperCut template uses fixed paper art colors - doesn't use theme colors
   const backgroundStyle = useMemo(
     () => ({
@@ -39,11 +41,11 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
 
   // Generate random rotations for paper cut effect
   const linkRotations = useMemo(() => {
-    return links.map((_, index) => {
+    return regularLinks.map((_, index) => {
       const rotations = [-3, -2, -1, 1, 2, 3];
       return rotations[index % rotations.length];
     });
-  }, [links]);
+  }, [regularLinks]);
 
   return (
     <div 
@@ -161,12 +163,12 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
 
         {/* Links - Paper Cards */}
         <div className="space-y-3 sm:space-y-4 w-full mb-16">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 text-center shadow-md">
               <p className="text-gray-600 text-xs sm:text-sm">هێشتا هیچ لینکێک نییە</p>
             </div>
           ) : (
-            links.map((link, index) => {
+            regularLinks.map((link, index) => {
               const icon = getPlatformIcon(link.platform, "w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-orange-600", (link.metadata as Record<string, string>)?.custom_icon);
               const label = link.display_name || getPlatformName(link.platform);
               const rotation = linkRotations[index] || 0;
@@ -217,6 +219,12 @@ export const PaperCutTemplate = memo(function PaperCutTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor="#1f2937"
+          textSecondaryColor={textSecondaryColor}
+        />
 
         {/* Footer */}
         <Footer 

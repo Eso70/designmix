@@ -7,6 +7,7 @@ import {
   getPlatformName,
   getPlatformColors,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { deriveTextColor, deriveTextSecondaryColor } from "@/lib/utils/theme-colors";
 import { Footer } from "@/components/public/Footer";
@@ -20,6 +21,7 @@ export const AuroraPillsTemplate = memo(function AuroraPillsTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -43,8 +45,8 @@ export const AuroraPillsTemplate = memo(function AuroraPillsTemplate({
   );
 
   const linksWithColors = useMemo(() => {
-    return links.map((link) => ({ link, colors: getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined) }));
-  }, [links]);
+    return regularLinks.map((link) => ({ link, colors: getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined) }));
+  }, [regularLinks]);
 
   return (
     <div className="relative w-full min-h-screen overflow-y-auto px-6 py-10" style={backgroundStyle}>
@@ -118,6 +120,12 @@ export const AuroraPillsTemplate = memo(function AuroraPillsTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor={textColor}
+          textSecondaryColor={textSecondaryColor}
+        />
       </div>
 
       {/* Footer */}

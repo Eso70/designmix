@@ -9,6 +9,7 @@ import {
   getPlatformIcon,
   getPlatformName,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
 
@@ -20,6 +21,7 @@ export const TerminalTemplate = memo(function TerminalTemplate({
   theme: _theme, // Not used - template has fixed colors
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -170,7 +172,7 @@ export const TerminalTemplate = memo(function TerminalTemplate({
 
           {/* Links Section */}
           <div className="w-full flex flex-col gap-2 sm:gap-2.5">
-            {links.length === 0 ? (
+            {regularLinks.length === 0 ? (
               <div className="text-center py-8">
                 <p 
                   className="font-kurdish text-sm sm:text-base font-mono"
@@ -178,7 +180,7 @@ export const TerminalTemplate = memo(function TerminalTemplate({
                 >هیچ لینکێک نییە</p>
               </div>
             ) : (
-              links.map((link, index) => {
+              regularLinks.map((link, index) => {
                 const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
                 const icon = getPlatformIcon(link.platform, "w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6", (link.metadata as Record<string, string>)?.custom_icon);
                 const platformName = getPlatformName(link.platform);
@@ -270,6 +272,13 @@ export const TerminalTemplate = memo(function TerminalTemplate({
               })
             )}
           </div>
+
+          <GpsLocationDisplay
+            gpsLink={gpsLink}
+            textColor="#34d399"
+            textSecondaryColor={textSecondaryColor}
+            className="border border-green-500/40 bg-black/60"
+          />
         </div>
 
         {/* Footer */}

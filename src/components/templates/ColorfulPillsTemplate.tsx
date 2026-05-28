@@ -7,6 +7,7 @@ import {
   getPlatformName,
   getPlatformColors,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { deriveTextColor, deriveTextSecondaryColor } from "@/lib/utils/theme-colors";
 import { Footer } from "@/components/public/Footer";
@@ -20,6 +21,7 @@ export const ColorfulPillsTemplate = memo(function ColorfulPillsTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -45,11 +47,11 @@ export const ColorfulPillsTemplate = memo(function ColorfulPillsTemplate({
 
   // Get platform colors for each link
   const linksWithColors = useMemo(() => {
-    return links.map((link) => {
+    return regularLinks.map((link) => {
       const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
       return { link, colors };
     });
-  }, [links]);
+  }, [regularLinks]);
 
   const _renderColorfulName = useCallback((name: string) => {
     const palette = [
@@ -162,6 +164,12 @@ export const ColorfulPillsTemplate = memo(function ColorfulPillsTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor={textColor}
+          textSecondaryColor={textSecondaryColor}
+        />
 
         {/* Footer */}
         <Footer 

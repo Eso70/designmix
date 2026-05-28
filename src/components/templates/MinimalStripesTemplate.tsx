@@ -8,6 +8,7 @@ import {
   getPlatformIcon,
   getPlatformName,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { deriveTextSecondaryColor } from "@/lib/utils/theme-colors";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
@@ -20,6 +21,7 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -39,7 +41,7 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
     [],
   );
 
-  const socialLinks = useMemo(() => links.slice(0, 4), [links]);
+  const socialLinks = useMemo(() => regularLinks.slice(0, 4), [regularLinks]);
 
   return (
     <div className="relative flex min-h-screen w-full justify-center overflow-y-auto px-3 py-10 pb-4">
@@ -94,12 +96,12 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
         </section>
 
         <section className="w-full max-w-xl space-y-3 sm:space-y-3.5 md:space-y-4 mb-16">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <p className="rounded-2xl sm:rounded-3xl border border-white/20 bg-white/15 px-4 py-4 sm:px-5 sm:py-4.5 md:px-6 md:py-5 text-center text-xs sm:text-sm text-white/80 backdrop-blur-2xl">
               هێشتا هیچ لینکێک نییە
             </p>
           ) : (
-            links.map((link) => {
+            regularLinks.map((link) => {
               const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
               const icon = getPlatformIcon(link.platform, "h-4 w-4 sm:h-5 sm:w-5 text-white", (link.metadata as Record<string, string>)?.custom_icon);
               const label = link.display_name || getPlatformName(link.platform);
@@ -161,6 +163,12 @@ export const MinimalStripesTemplate = memo(function MinimalStripesTemplate({
             ))}
           </section>
         ) : null}
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor="#ffffff"
+          textSecondaryColor={textSecondaryColor}
+        />
 
         <Footer 
           footerText={linktree.footer_text}

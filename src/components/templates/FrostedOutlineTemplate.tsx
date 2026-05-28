@@ -3,6 +3,7 @@
 import { memo, useCallback, useMemo } from "react";
 import { LinktreeHeader } from "@/components/public/LinktreeHeader";
 import { getPlatformIcon, getPlatformName, getPlatformColors } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { deriveTextColor, deriveTextSecondaryColor } from "@/lib/utils/theme-colors";
 import { Footer } from "@/components/public/Footer";
@@ -14,6 +15,7 @@ export const FrostedOutlineTemplate = memo(function FrostedOutlineTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const backgroundStyle = useMemo(
     () => ({
       background: theme.isSolid
@@ -46,12 +48,12 @@ export const FrostedOutlineTemplate = memo(function FrostedOutlineTemplate({
         <LinktreeHeader linktree={linktree} textColor={textColor} textSecondaryColor={textSecondaryColor} />
 
         <div className="mt-6 flex flex-col gap-3 mb-16">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <div className="rounded-2xl border border-white/30 bg-white/10 px-4 py-6 text-center text-sm" style={{ color: textSecondaryColor }}>
               هێشتا هیچ لینکێک نییە
             </div>
           ) : (
-            links.map((link, idx) => {
+            regularLinks.map((link, idx) => {
               const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
               const icon = getPlatformIcon(link.platform, "w-6 h-6", (link.metadata as Record<string, string>)?.custom_icon);
               const label = link.display_name || getPlatformName(link.platform);
@@ -98,6 +100,12 @@ export const FrostedOutlineTemplate = memo(function FrostedOutlineTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor={textColor}
+          textSecondaryColor={textSecondaryColor}
+        />
       </div>
 
       {/* Footer */}

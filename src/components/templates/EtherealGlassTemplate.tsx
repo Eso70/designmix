@@ -7,6 +7,7 @@ import {
   getPlatformName,
   getPlatformColors,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { deriveTextColor, deriveTextSecondaryColor } from "@/lib/utils/theme-colors";
 import { Footer } from "@/components/public/Footer";
@@ -20,6 +21,7 @@ export const EtherealGlassTemplate = memo(function EtherealGlassTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -198,7 +200,7 @@ export const EtherealGlassTemplate = memo(function EtherealGlassTemplate({
 
         {/* Links - Modern Floating Glass Cards */}
         <div className="space-y-4 mb-20" dir="ltr">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <div 
               className="rounded-2xl backdrop-blur-2xl p-8 text-center font-kurdish"
               style={{
@@ -215,7 +217,7 @@ export const EtherealGlassTemplate = memo(function EtherealGlassTemplate({
               <p className="text-sm">هێشتا هیچ لینکێک نییە</p>
             </div>
           ) : (
-            links.map((link, idx) => {
+            regularLinks.map((link, idx) => {
               const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
               const label = link.display_name || getPlatformName(link.platform);
               const icon = getPlatformIcon(link.platform, "w-6 h-6 sm:w-7 sm:h-7", (link.metadata as Record<string, string>)?.custom_icon);
@@ -313,6 +315,12 @@ export const EtherealGlassTemplate = memo(function EtherealGlassTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor={textColor}
+          textSecondaryColor={textSecondaryColor}
+        />
 
         {/* Footer */}
         <Footer 

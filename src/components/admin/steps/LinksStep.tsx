@@ -25,6 +25,7 @@ interface LinkItemProps {
   linkId: string;
   platform: typeof SOCIAL_PLATFORMS[0];
   isPhoneBased: boolean;
+  isGps: boolean;
   currentValue: string;
   countryCode?: string;
   displayName?: string;
@@ -48,6 +49,7 @@ const LinkItem = memo(function LinkItem({
   linkId,
   platform,
   isPhoneBased,
+  isGps,
   currentValue,
   countryCode,
   displayName,
@@ -141,14 +143,16 @@ const LinkItem = memo(function LinkItem({
           >
             <X className="h-3.5 w-3.5" />
           </button>
-          <button
-            type="button"
-            onClick={handleAdd}
-            className="rounded-lg p-1 text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-700"
-            title={`زیادکردنی لینکی تر بۆ ${platform.name}`}
-          >
-            <Plus className="h-3.5 w-3.5" />
-          </button>
+          {!isGps && (
+            <button
+              type="button"
+              onClick={handleAdd}
+              className="rounded-lg p-1 text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-700"
+              title={`زیادکردنی لینکی تر بۆ ${platform.name}`}
+            >
+              <Plus className="h-3.5 w-3.5" />
+            </button>
+          )}
         </div>
       </div>
       
@@ -194,6 +198,7 @@ const LinkItem = memo(function LinkItem({
               value={currentValue}
               onChange={handleUpdate}
               placeholder={
+                platform.id === "gps" ? "36.191, 44.009" :
                 isPhoneBased ? "07501234567" :
                 platform.id === "telegram" ? "username or https://t.me/username" :
                 platform.id === "instagram" ? "Any Instagram link: profile, post, reel, story, etc." :
@@ -303,7 +308,11 @@ export const LinksStep = memo(function LinksStep({
         return { linkId, platform, link };
       })
       .filter((item): item is NonNullable<typeof item> => item !== null)
-      .sort((a, b) => (a.link.order ?? 0) - (b.link.order ?? 0));
+      .sort((a, b) => {
+        if (a.platform.id === "gps") return 1;
+        if (b.platform.id === "gps") return -1;
+        return (a.link.order ?? 0) - (b.link.order ?? 0);
+      });
   }, [selectedPlatforms, linksMap, platformsMap]);
 
   if (sortedLinks.length === 0) {
@@ -327,8 +336,10 @@ export const LinksStep = memo(function LinksStep({
         {sortedLinks.map(({ linkId, platform, link }, index) => {
           if (!platform || !link) return null;
           const isPhoneBased = platform.id === "whatsapp" || platform.id === "phone" || platform.id === "viber";
+          const isGps = platform.id === "gps";
           const currentValue = link.value || "";
           const linkError = linkErrors[linkId];
+          const nextIsGps = sortedLinks[index + 1]?.platform.id === "gps";
 
           return (
             <LinkItem
@@ -336,6 +347,7 @@ export const LinksStep = memo(function LinksStep({
               linkId={linkId}
               platform={platform}
               isPhoneBased={isPhoneBased}
+              isGps={isGps}
               currentValue={currentValue}
               countryCode={link.countryCode || "964"}
               displayName={link.displayName}
@@ -351,8 +363,8 @@ export const LinksStep = memo(function LinksStep({
               onAdd={onAddPlatformInstance}
               onMoveUp={() => onMoveLink(linkId, 'up')}
               onMoveDown={() => onMoveLink(linkId, 'down')}
-              canMoveUp={index > 0}
-              canMoveDown={index < sortedLinks.length - 1}
+              canMoveUp={!isGps && index > 0}
+              canMoveDown={!isGps && index < sortedLinks.length - 1 && !nextIsGps}
             />
           );
         })}

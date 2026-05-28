@@ -1,5 +1,55 @@
 import { COUNTRIES_SORTED } from "./modal-constants";
 
+export const parseGpsCoordinates = (input: string): { lat: string; lng: string } | null => {
+  if (!input || typeof input !== "string") return null;
+  const decoded = decodeURIComponent(input).trim();
+  if (!decoded) return null;
+
+  const queryMatch = decoded.match(/[?&]q=([^&]+)/i);
+  const geoMatch = decoded.match(/^geo:([^?]+)/i);
+  const source = (queryMatch && queryMatch[1]) || (geoMatch && geoMatch[1]) || decoded;
+
+  const coordsMatch = source.match(/(-?\d+(?:\.\d+)?)[,\s]+(-?\d+(?:\.\d+)?)/);
+  if (!coordsMatch) return null;
+
+  return {
+    lat: coordsMatch[1],
+    lng: coordsMatch[2],
+  };
+};
+
+const normalizeUrlForParsing = (input: string): string => {
+  const trimmed = input.trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
+  return `https://${trimmed}`;
+};
+
+export const isGoogleMapsUrl = (input: string): boolean => {
+  if (!input || typeof input !== "string") return false;
+  const normalized = normalizeUrlForParsing(input);
+  try {
+    const url = new URL(normalized);
+    const host = url.hostname.toLowerCase();
+    return (
+      host === "maps.app.goo.gl" ||
+      host === "goo.gl" ||
+      host.endsWith("google.com") && url.pathname.startsWith("/maps") ||
+      host === "maps.google.com"
+    );
+  } catch {
+    return false;
+  }
+};
+
+export const normalizeGoogleMapsUrl = (input: string): string => {
+  return normalizeUrlForParsing(input);
+};
+
+export const isGpsInputValid = (input: string): boolean => {
+  return !!parseGpsCoordinates(input) || isGoogleMapsUrl(input);
+};
+
 // Simple slugify function
 const slugify = (text: string): string => {
   return text
@@ -36,6 +86,17 @@ export const buildSlugFromName = (value: string): string => {
 
 // Extract value and country code from URL (for edit mode)
 export const extractValueFromUrl = (platform: string, url: string, metadata?: Record<string, unknown> | null): { value: string; countryCode: string } => {
+  if (platform === "gps") {
+    const originalInput = metadata?.original_input;
+    if (typeof originalInput === "string") {
+      return { value: originalInput, countryCode: "964" };
+    }
+    const coords = parseGpsCoordinates(url || "");
+    if (coords) {
+      return { value: `${coords.lat},${coords.lng}`, countryCode: "964" };
+    }
+    return { value: "", countryCode: "964" };
+  }
   // First, try to use metadata if available (most reliable)
   if (metadata && typeof metadata === 'object') {
     const originalInput = metadata.original_input || metadata.originalInput;
@@ -380,6 +441,17 @@ export const generateUrl = (platform: string, input: string, countryCode?: strin
       // Preserve other explicit schemes (mailto:, tel:, viber://, etc.)
       if (trimmed.includes("://") || trimmed.startsWith("mailto:") || trimmed.startsWith("tel:")) return trimmed;
       return `https://${trimmed}`;
+    }
+
+    case "gps": {
+      const coords = parseGpsCoordinates(trimmed);
+      if (coords) {
+        return `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
+      }
+      if (isGoogleMapsUrl(trimmed)) {
+        return normalizeGoogleMapsUrl(trimmed);
+      }
+      return "";
     }
 
     default:

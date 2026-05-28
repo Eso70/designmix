@@ -17,7 +17,8 @@ import {
   SiLinkedin,
   SiSnapchat,
 } from "react-icons/si";
-import { FaPhoneAlt, FaEnvelope, FaGlobe, FaLink } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaGlobe, FaLink, FaMapMarkerAlt } from "react-icons/fa";
+import { splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 
 interface LinktreeButtonsProps {
   links: Link[];
@@ -83,13 +84,15 @@ export const LinktreeButtons = memo(function LinktreeButtons({
   links,
   onLinkClick,
 }: LinktreeButtonsProps) {
+  const { regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
+
   // Memoize platform colors lookup to prevent recalculation on every render
   const linksWithColors = useMemo(() => {
-    return links.map((link) => ({
+    return regularLinks.map((link) => ({
       link,
       colors: getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined),
     }));
-  }, [links]);
+  }, [regularLinks]);
 
   return (
     <main className="w-full space-y-2.5 sm:space-y-4 px-1 sm:px-0 mb-16">
@@ -197,6 +200,11 @@ export function getPlatformColors(platform: string, customColor?: string): {
       via: "rgba(37, 99, 235, 0.9)", 
       to: "rgba(37, 99, 235, 0.85)" 
     },
+    gps: {
+      from: "rgba(100, 116, 139, 0.85)", // Slate
+      via: "rgba(100, 116, 139, 0.9)",
+      to: "rgba(100, 116, 139, 0.85)",
+    },
     custom: { 
       from: "rgba(107, 114, 128, 0.85)", // Custom Gray
       via: "rgba(107, 114, 128, 0.9)", 
@@ -227,6 +235,7 @@ export function getPlatformName(platform: string): string {
     discord: "Discord",
     email: "Email",
     website: "Website",
+    gps: "GPS Location",
     custom: "Link",
   };
 
@@ -255,6 +264,7 @@ export function getPlatformIcon(platform: string, className = "w-6 h-6 sm:w-7 sm
     discord: <SiDiscord className={className} />,
     email: <FaEnvelope className={className} />,
     website: <FaGlobe className={className} />,
+    gps: <FaMapMarkerAlt className={className} />,
     custom: <FaLink className={className} />,
   };
 

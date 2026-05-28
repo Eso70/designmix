@@ -9,6 +9,7 @@ import {
   getPlatformIcon,
   getPlatformName,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { areTemplatePropsEqual } from "@/lib/utils/linktree-utils";
 
@@ -20,6 +21,7 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
   theme: _theme, // Not used - template has fixed colors
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -145,7 +147,7 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
 
         {/* Links */}
         <div className="space-y-2.5 sm:space-y-3 w-full mb-16">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <div 
               className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-4.5 md:p-5 border-2 text-center"
               style={{ borderColor: 'rgba(16, 185, 129, 0.3)' }} // Fixed green border
@@ -153,7 +155,7 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
               <p className="text-gray-600 text-xs sm:text-sm">هێشتا هیچ لینکێک نییە</p>
             </div>
           ) : (
-            links.map((link) => {
+            regularLinks.map((link) => {
               const label = link.display_name || getPlatformName(link.platform);
 
               return (
@@ -207,6 +209,12 @@ export const OrganicNatureTemplate = memo(function OrganicNatureTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor="#1f2937"
+          textSecondaryColor={textSecondaryColor}
+        />
 
         {/* Footer */}
         <Footer 

@@ -12,7 +12,7 @@ import {
   DEFAULT_FOOTER_PHONE,
   getPlatformNameKurdish
 } from "./modal-constants";
-import { buildSlugFromName, generateUrl, extractValueFromUrl } from "./modal-utils";
+import { buildSlugFromName, generateUrl, extractValueFromUrl, parseGpsCoordinates, isGpsInputValid } from "./modal-utils";
 import { TEMPLATE_DEFAULT_ID, isTemplateKey, normalizeTemplateConfig, type TemplateKey } from "@/lib/templates/config";
 import { debounce } from "@/lib/utils/debounce";
 import type { WhatsAppQuestion } from "@/components/public/WhatsAppQuestionModal";
@@ -211,6 +211,13 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
       // Must have either value or URL
       if (!linkValue && !linkUrl) {
         return "تکایە بەروارەکان بۆ لینکەکان بنووسە";
+      }
+
+      if (link.platform === "gps") {
+        if (!isGpsInputValid(linkValue || linkUrl)) {
+          return "تکایە ناونیشانی GPS بنووسە (latitude, longitude)";
+        }
+        continue;
       }
       
       // For phone-based platforms, validate phone number format
@@ -661,20 +668,27 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
             enabled: true,
             order: prevLinks.length,
           };
-          
+          const nonGpsLinks = prevLinks.filter(link => link.platform !== "gps");
+          const gpsLinks = prevLinks.filter(link => link.platform === "gps");
+          const nextLinks = platformId === "gps"
+            ? [...nonGpsLinks, newLink]
+            : [...nonGpsLinks, newLink, ...gpsLinks];
+
+          const orderedLinks = nextLinks.map((link, index) => ({ ...link, order: index }));
+
           // Update selected platforms
-          setSelectedPlatforms(prevSelected => {
-            const newSelectedPlatforms = [...prevSelected, newLinkId];
-            
+          setSelectedPlatforms(() => {
+            const newSelectedPlatforms = orderedLinks.map(link => link.id);
+
             // Clear platforms error if at least one is selected
             if (touched.platforms && newSelectedPlatforms.length > 0) {
               setErrors(prevErrors => ({ ...prevErrors, platforms: undefined }));
             }
-            
+
             return newSelectedPlatforms;
           });
           
-          return [...prevLinks, newLink];
+          return orderedLinks;
         }
       });
     });
@@ -682,6 +696,9 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
 
   // Add another instance of a platform - memoized for performance
   const addPlatformInstance = useCallback((platformId: string) => {
+    if (platformId === "gps") {
+      return;
+    }
     const newLinkId = generateLinkId(platformId);
     setSocialLinks(prev => {
       const newLink: SocialLink = {
@@ -693,9 +710,13 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
         enabled: true,
         order: prev.length,
       };
-      return [...prev, newLink];
+      const nonGpsLinks = prev.filter(link => link.platform !== "gps");
+      const gpsLinks = prev.filter(link => link.platform === "gps");
+      const nextLinks = [...nonGpsLinks, newLink, ...gpsLinks];
+      const orderedLinks = nextLinks.map((link, index) => ({ ...link, order: index }));
+      setSelectedPlatforms(orderedLinks.map(link => link.id));
+      return orderedLinks;
     });
-    setSelectedPlatforms(prev => [...prev, newLinkId]);
   }, [generateLinkId]);
 
   // Remove a link instance - memoized for performance
@@ -1053,6 +1074,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
         const isPhonePlatform = platform === "whatsapp" || platform === "phone" || platform === "viber";
         // Get display name - if empty, fallback to English default (will be handled by getPlatformName)
         const displayName = link.displayName?.trim() || undefined;
+        const gpsCoords = platform === "gps" ? parseGpsCoordinates(linkValue) : null;
         linkMetadata[platform].push({
           display_name: displayName, // If undefined, will use English default from getPlatformName
           // For WhatsApp, use empty message since modal handles it. For Telegram/Viber, use empty as default.
@@ -1060,6 +1082,7 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
           metadata: {
             original_input: linkValue,
             ...(isPhonePlatform && link.countryCode ? { country_code: link.countryCode } : {}),
+            ...(gpsCoords ? { gps_lat: gpsCoords.lat, gps_lng: gpsCoords.lng } : {}),
             ...(link.customColor ? { custom_color: link.customColor } : {}),
             ...(link.customIcon ? { custom_icon: link.customIcon } : {}),
           },
@@ -1216,6 +1239,9 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
     const currentIndex = currentSorted.findIndex((item) => item.linkId === linkId);
     
     if (currentIndex === -1) return;
+
+    const currentItem = currentSorted[currentIndex];
+    if (currentItem.link.platform === "gps") return;
     
     const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
     
@@ -1225,7 +1251,11 @@ export const CreateLinktreeModal = memo(function CreateLinktreeModal({
     const reorderedLinks = [...currentSorted];
     [reorderedLinks[currentIndex], reorderedLinks[newIndex]] = [reorderedLinks[newIndex], reorderedLinks[currentIndex]];
     
-    const newSelectedPlatforms = reorderedLinks.map((item: { linkId: string }) => item.linkId);
+    const gpsItems = reorderedLinks.filter((item) => item.link.platform === "gps");
+    const nonGpsItems = reorderedLinks.filter((item) => item.link.platform !== "gps");
+    const orderedItems = [...nonGpsItems, ...gpsItems];
+
+    const newSelectedPlatforms = orderedItems.map((item: { linkId: string }) => item.linkId);
     
     setSelectedPlatforms(newSelectedPlatforms);
     setSocialLinks((prev) =>

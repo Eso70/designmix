@@ -7,6 +7,7 @@ import {
   getPlatformName,
   getPlatformColors,
 } from "@/components/public/LinktreeButtons";
+import { GpsLocationDisplay, splitGpsLinks } from "@/components/public/GpsLocationDisplay";
 import type { TemplateComponentProps } from "./types";
 import { deriveTextColor, deriveTextSecondaryColor } from "@/lib/utils/theme-colors";
 import { Footer } from "@/components/public/Footer";
@@ -20,6 +21,7 @@ export const SoftSystemTemplate = memo(function SoftSystemTemplate({
   theme,
   onLinkClick,
 }: TemplateComponentProps) {
+  const { gpsLink, regularLinks } = useMemo(() => splitGpsLinks(links), [links]);
   const profileImage = useMemo(() => linktree.image || "/images/DefaultAvatar.png", [linktree.image]);
   const subtitle = useMemo(() => linktree.subtitle?.trim() || FALLBACK_SUBTITLE, [linktree.subtitle]);
 
@@ -109,7 +111,7 @@ export const SoftSystemTemplate = memo(function SoftSystemTemplate({
 
         {/* Links - iOS System Button Style */}
         <div className="space-y-3 mb-20" dir="ltr">
-          {links.length === 0 ? (
+          {regularLinks.length === 0 ? (
             <div 
               className="bg-white/80 backdrop-blur-2xl rounded-2xl p-8 text-center shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-white/40"
               style={{ color: cardTextSecondaryColor }}
@@ -117,7 +119,7 @@ export const SoftSystemTemplate = memo(function SoftSystemTemplate({
               <p className="text-sm font-medium font-kurdish">هێشتا هیچ لینکێک نییە</p>
             </div>
           ) : (
-            links.map((link, idx) => {
+            regularLinks.map((link, idx) => {
               const colors = getPlatformColors(link.platform, link.metadata?.custom_color as string | undefined);
               const label = link.display_name || getPlatformName(link.platform);
               const icon = getPlatformIcon(link.platform, "w-5 h-5 sm:w-6 sm:h-6", (link.metadata as Record<string, string>)?.custom_icon);
@@ -181,6 +183,12 @@ export const SoftSystemTemplate = memo(function SoftSystemTemplate({
             })
           )}
         </div>
+
+        <GpsLocationDisplay
+          gpsLink={gpsLink}
+          textColor={footerTextColor}
+          textSecondaryColor={footerTextSecondaryColor}
+        />
 
         {/* Footer */}
         <Footer 
