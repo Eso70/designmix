@@ -14,6 +14,9 @@ type TikTokEventPayload = {
   description?: string;
   value?: number;
   currency?: string;
+  email?: string;
+  phone?: string;
+  external_id?: string;
   ip?: string;
   user_agent?: string;
   ttclid?: string;
@@ -23,7 +26,7 @@ type TikTokEventPayload = {
 const EVENTS_API_URL = "https://business-api.tiktok.com/open_api/v1.3/event/track/";
 
 function isEnabled(): boolean {
-  return process.env.TIKTOK_EVENTS_API_ENABLED === "true";
+  return true;
 }
 
 function getPixelId(): string | undefined {
@@ -93,6 +96,9 @@ export async function sendTikTokEvent(payload: TikTokEventPayload): Promise<void
           url: payload.url,
         },
         context: {
+          email: payload.email,
+          phone: payload.phone,
+          external_id: payload.external_id,
           ip: payload.ip,
           user_agent: payload.user_agent,
           ttclid: payload.ttclid,
