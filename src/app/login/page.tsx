@@ -208,7 +208,7 @@ export default function LoginPage() {
         />
         {/* Soft radial glow behind form */}
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full opacity-[0.15] pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-140 h-140 rounded-full opacity-[0.15] pointer-events-none"
           style={{
             background: 'radial-gradient(circle, rgba(71, 192, 185, 0.7), transparent 65%)',
           }}
@@ -273,7 +273,7 @@ export default function LoginPage() {
               <h1 className="text-3xl font-bold text-slate-800 tracking-tight">
                 چوونەژوورەوە
               </h1>
-              <div className="w-12 h-[3px] rounded-full" style={{ backgroundColor: '#47C0B9' }} />
+              <div className="w-12 h-0.75 rounded-full" style={{ backgroundColor: '#47C0B9' }} />
               <p className="text-sm text-slate-400 tracking-wide">
                 بەخێربێیت بۆ Designmix
               </p>
@@ -283,7 +283,7 @@ export default function LoginPage() {
           {/* Form Card */}
           <div className="relative rounded-2xl border border-slate-100/80 bg-white/90 backdrop-blur-sm p-6 sm:p-8 shadow-[0_2px_20px_-6px_rgba(71,192,185,0.08)]">
             {/* Top accent bar */}
-            <div className="absolute top-0 left-8 right-8 h-[2px] rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #47C0B9, transparent)' }} />
+            <div className="absolute top-0 left-8 right-8 h-0.5 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #47C0B9, transparent)' }} />
             {/* Login Form */}
             <form 
             onSubmit={handleSubmit} 

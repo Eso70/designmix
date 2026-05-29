@@ -214,7 +214,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
         {errors.image && (
           <p className="text-xs text-[#47C0B9] text-center font-kurdish">{errors.image}</p>
         )}
-        <label className="group relative flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg sm:rounded-xl px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-white shadow-md hover:shadow-lg transition-all duration-200 bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]">
+        <label className="group relative flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg sm:rounded-xl px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-white shadow-md hover:shadow-lg transition-all duration-200 bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]">
           <Upload className="h-4 w-4" />
           <span>وێنەی پڕۆفایل هەڵبژێرە</span>
           <input
@@ -309,7 +309,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
             ) : (
               <span className="text-gray-400">شێوازێک هەڵبژێرە</span>
             )}
-            <Layout className="h-4 w-4 text-gray-500 flex-shrink-0" />
+            <Layout className="h-4 w-4 text-gray-500 shrink-0" />
           </button>
           {errors.templateKey && touched.templateKey && (
             <p className="text-xs text-[#47C0B9] mt-1 font-kurdish">{errors.templateKey}</p>
@@ -326,7 +326,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
         <div className="grid grid-cols-7 sm:grid-cols-10 md:grid-cols-14 gap-1.5 items-center">
           {/* Custom Color Picker Button */}
           <label 
-            className={`relative h-8 w-full overflow-hidden rounded-md border-2 transition-all duration-200 cursor-pointer flex items-center justify-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-[#47C0B9] via-yellow-500 to-blue-500 shadow-md ${
+            className={`relative h-8 w-full overflow-hidden rounded-md border-2 transition-all duration-200 cursor-pointer flex items-center justify-center bg-[conic-gradient(at_top_right,var(--tw-gradient-stops))] from-[#47C0B9] via-yellow-500 to-blue-500 shadow-md ${
               backgroundColor.startsWith('#') 
                 ? "border-[#47C0B9] scale-110 ring-2 ring-[#47C0B9]/50 shadow-lg shadow-[#47C0B9]/30 z-10"
                 : "border-gray-300 hover:border-gray-400 hover:scale-105"
@@ -361,7 +361,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
       {/* Footer Name and Phone */}
       <div className="space-y-3 sm:space-y-4">
         {/* Hide Footer Toggle - Custom Toggle Switch */}
-        <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white hover:border-gray-300 transition-all duration-200 touch-manipulation">
+        <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl border border-gray-200 bg-linear-to-br from-gray-50 to-white hover:border-gray-300 transition-all duration-200 touch-manipulation">
           <label 
             htmlFor="footerHidden" 
             className="text-xs sm:text-sm md:text-base font-medium text-gray-700 cursor-pointer flex-1 leading-tight sm:leading-normal pr-2 sm:pr-0"
@@ -375,7 +375,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
             aria-checked={footerHidden}
             aria-label={footerHidden ? "فوتەر شاردراوە" : "فوتەر نیشاندراوە"}
             onClick={() => onFooterHiddenChange(!footerHidden)}
-            className={`relative inline-flex h-7 w-12 sm:h-8 sm:w-14 md:h-9 md:w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#47C0B9] focus:ring-offset-2 touch-manipulation active:scale-95 ${
+            className={`relative inline-flex h-7 w-12 sm:h-8 sm:w-14 md:h-9 md:w-16 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#47C0B9] focus:ring-offset-2 touch-manipulation active:scale-95 ${
               footerHidden ? 'bg-[#47C0B9]' : 'bg-gray-300'
             }`}
           >
@@ -427,10 +427,10 @@ export const BasicInfoStep = memo(function BasicInfoStep({
       </div>
 
       {/* WhatsApp Modal Questions Configuration */}
-      <div className="space-y-3 p-4 sm:p-5 rounded-xl border border-gray-200 bg-gradient-to-br from-green-50/30 to-green-50/10">
+      <div className="space-y-3 p-4 sm:p-5 rounded-xl border border-gray-200 bg-linear-to-br from-green-50/30 to-green-50/10">
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-green-100 to-green-50 border border-green-200">
+            <div className="p-1.5 rounded-lg bg-linear-to-br from-green-100 to-green-50 border border-green-200">
               <MessageCircle className="h-4 w-4 text-green-600" />
             </div>
             <h3 className="text-sm sm:text-base font-semibold text-gray-800 font-kurdish">
@@ -443,7 +443,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
             aria-checked={whatsappModalEnabled}
             aria-label={whatsappModalEnabled ? "مۆدالی واتساپ چالاکە" : "مۆدالی واتساپ ناچالاکە"}
             onClick={() => onWhatsappModalEnabledChange(!whatsappModalEnabled)}
-            className={`relative inline-flex h-7 w-12 sm:h-8 sm:w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 touch-manipulation active:scale-95 ${
+            className={`relative inline-flex h-7 w-12 sm:h-8 sm:w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 touch-manipulation active:scale-95 ${
               whatsappModalEnabled ? 'bg-green-500' : 'bg-gray-300'
             }`}
           >
@@ -495,7 +495,7 @@ export const BasicInfoStep = memo(function BasicInfoStep({
             <button
               type="button"
               onClick={handleAddQuestion}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-white bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>زیادکردنی پرسیار</span>

@@ -209,11 +209,11 @@ export const AnalyticsModal = memo(function AnalyticsModal({
         className="relative w-full max-w-4xl my-4 sm:my-8 rounded-2xl bg-primary-95 backdrop-blur-sm border border-gray-100 shadow-2xl overflow-hidden"
       >
         {/* Header */}
-        <div className="relative p-5 sm:p-6 border-b border-gray-100/50 bg-gradient-to-r from-white to-slate-50/30">
+        <div className="relative p-5 sm:p-6 border-b border-gray-100/50 bg-linear-to-r from-white to-slate-50/30">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2.5 rounded-xl bg-gradient-to-br from-brand-50 to-brand-50 border border-brand-100 shadow-sm">
+                <div className="p-2.5 rounded-xl bg-linear-to-br from-brand-50 to-brand-50 border border-brand-100 shadow-sm">
                   <BarChart3 className="h-5 w-5 text-brand-500" />
                 </div>
                 <div>
@@ -234,11 +234,11 @@ export const AnalyticsModal = memo(function AnalyticsModal({
                 </div>
               )}
             </div>
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={() => setShowConfirmDialog(true)}
                 disabled={isLoading || isClearing || !analytics || (analytics.unique_views === 0 && analytics.unique_clicks === 0)}
-                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 hover:from-rose-100 hover:to-pink-100 transition-all text-rose-500 hover:text-rose-600 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:from-rose-50 disabled:hover:to-pink-50 border border-rose-100 hover:border-rose-200 shadow-sm hover:shadow"
+                className="group relative p-2.5 rounded-xl bg-linear-to-br from-rose-50 to-pink-50 hover:from-rose-100 hover:to-pink-100 transition-all text-rose-500 hover:text-rose-600 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:from-rose-50 disabled:hover:to-pink-50 border border-rose-100 hover:border-rose-200 shadow-sm hover:shadow"
                 aria-label="Clear Analytics"
                 title={!analytics || (analytics.unique_views === 0 && analytics.unique_clicks === 0) ? "هیچ داتایەک نییە" : "پاککردنەوەی داتاکان"}
               >
@@ -250,7 +250,7 @@ export const AnalyticsModal = memo(function AnalyticsModal({
                   handleRefresh();
                 }}
                 disabled={isLoading || isClearing}
-                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all text-slate-500 hover:text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow"
+                className="group relative p-2.5 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all text-slate-500 hover:text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow"
                 aria-label="Refresh"
                 title="نوێکردنەوە"
               >
@@ -258,7 +258,7 @@ export const AnalyticsModal = memo(function AnalyticsModal({
               </button>
               <button
                 onClick={onClose}
-                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all text-slate-500 hover:text-slate-700 border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow"
+                className="group relative p-2.5 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all text-slate-500 hover:text-slate-700 border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow"
                 aria-label="داخستن"
               >
                 <X className="h-5 w-5 transition-transform group-hover:rotate-90" />
@@ -268,7 +268,7 @@ export const AnalyticsModal = memo(function AnalyticsModal({
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-5 md:p-6 overflow-y-auto max-h-[calc(100vh-180px)] sm:max-h-[calc(100vh-200px)] md:max-h-[calc(100vh-220px)] custom-scrollbar bg-gradient-to-br from-white to-slate-50/20">
+        <div className="p-4 sm:p-5 md:p-6 overflow-y-auto max-h-[calc(100vh-180px)] sm:max-h-[calc(100vh-200px)] md:max-h-[calc(100vh-220px)] custom-scrollbar bg-linear-to-br from-white to-slate-50/20">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-16">
               <Loader2 className="h-10 w-10 animate-spin text-[#47C0B9] mb-4" />
@@ -314,7 +314,7 @@ export const AnalyticsModal = memo(function AnalyticsModal({
 
                   {/* Top Clicked Links */}
                   {analytics.top_clicked_links.length > 0 && (
-                    <div className="rounded-2xl bg-gradient-to-br from-slate-50/50 to-gray-50/50 p-4 sm:p-5 border border-slate-100/50 shadow-sm">
+                    <div className="rounded-2xl bg-linear-to-br from-slate-50/50 to-gray-50/50 p-4 sm:p-5 border border-slate-100/50 shadow-sm">
                       <div className="flex items-center gap-2 mb-4">
                         <MousePointerClick className="h-4 w-4 text-slate-400" />
                         <h3 className="text-sm font-semibold text-slate-700 font-kurdish">زۆرترین کلیک</h3>
@@ -327,11 +327,11 @@ export const AnalyticsModal = memo(function AnalyticsModal({
                           >
                             <div className="flex items-center justify-between mb-2">
                               <div className="flex items-center gap-3 flex-1 min-w-0">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-sm ${
-                                  index === 0 ? "bg-gradient-to-br from-brand-100 to-brand-100 text-brand-600 border border-brand-200" :
-                                  index === 1 ? "bg-gradient-to-br from-slate-100 to-gray-100 text-slate-500 border border-slate-200" :
-                                  index === 2 ? "bg-gradient-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 text-[#47C0B9] border border-[#47C0B9]/30" :
-                                  "bg-gradient-to-br from-slate-50 to-gray-50 text-slate-400 border border-slate-100"
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 shadow-sm ${
+                                  index === 0 ? "bg-linear-to-br from-brand-100 to-brand-100 text-brand-600 border border-brand-200" :
+                                  index === 1 ? "bg-linear-to-br from-slate-100 to-gray-100 text-slate-500 border border-slate-200" :
+                                  index === 2 ? "bg-linear-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 text-[#47C0B9] border border-[#47C0B9]/30" :
+                                  "bg-linear-to-br from-slate-50 to-gray-50 text-slate-400 border border-slate-100"
                                 }`}>
                                   {index + 1}
                                 </div>
@@ -342,7 +342,7 @@ export const AnalyticsModal = memo(function AnalyticsModal({
                                   <div className="text-xs text-slate-500 font-kurdish">{link.platform}</div>
                                 </div>
                               </div>
-                              <div className="text-sm font-semibold text-slate-700 font-kurdish flex-shrink-0 ml-3">
+                              <div className="text-sm font-semibold text-slate-700 font-kurdish shrink-0 ml-3">
                                 {link.click_count.toLocaleString()} کلیک
                               </div>
                             </div>
@@ -359,16 +359,16 @@ export const AnalyticsModal = memo(function AnalyticsModal({
 
       {/* Confirmation Dialog */}
       {showConfirmDialog && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-2 sm:p-3 md:p-4 bg-black/40 backdrop-blur-md overflow-y-auto">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-2 sm:p-3 md:p-4 bg-black/40 backdrop-blur-md overflow-y-auto">
           <div 
             className="relative w-full max-w-md my-2 sm:my-4 rounded-2xl bg-primary-95 backdrop-blur-sm border border-gray-100/50 shadow-xl overflow-hidden"
             dir="rtl"
           >
             {/* Content */}
-            <div className="p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/30">
+            <div className="p-6 sm:p-8 bg-linear-to-br from-white to-slate-50/30">
               {/* Icon */}
               <div className="flex justify-center mb-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-rose-50/70 to-pink-50/70 border border-rose-100/50 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-linear-to-br from-rose-50/70 to-pink-50/70 border border-rose-100/50 flex items-center justify-center">
                   <Trash2 className="h-7 w-7 text-rose-400" />
                 </div>
               </div>
@@ -385,14 +385,14 @@ export const AnalyticsModal = memo(function AnalyticsModal({
                 <button
                   onClick={() => setShowConfirmDialog(false)}
                   disabled={isClearing}
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-br from-slate-50/80 to-gray-50/80 hover:from-slate-100 hover:to-gray-100 border border-slate-100/50 text-slate-600 hover:text-slate-700 font-medium font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm shadow-sm hover:shadow"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-linear-to-br from-slate-50/80 to-gray-50/80 hover:from-slate-100 hover:to-gray-100 border border-slate-100/50 text-slate-600 hover:text-slate-700 font-medium font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm shadow-sm hover:shadow"
                 >
                   هەڵوەشاندنەوە
                 </button>
                 <button
                   onClick={handleClearAnalytics}
                   disabled={isClearing}
-                  className="flex-1 px-4 py-2.5 rounded-xl text-white font-medium font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm bg-gradient-to-r from-rose-400 to-pink-400 hover:from-rose-500 hover:to-pink-500 shadow-md hover:shadow-lg"
+                  className="flex-1 px-4 py-2.5 rounded-xl text-white font-medium font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm bg-linear-to-r from-rose-400 to-pink-400 hover:from-rose-500 hover:to-pink-500 shadow-md hover:shadow-lg"
                 >
                   {isClearing ? (
                     <>

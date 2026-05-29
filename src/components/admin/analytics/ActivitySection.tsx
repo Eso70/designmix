@@ -54,7 +54,7 @@ export const ActivitySection = memo(function ActivitySection({
           {count}
         </span>
       </div>
-      <div className="space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
+      <div className="space-y-3 max-h-100 overflow-y-auto custom-scrollbar">
         {entries.length > 0 ? (
           entries.map((entry, index) => {
             const timestamp = entry[timestampKey];
@@ -76,7 +76,7 @@ export const ActivitySection = memo(function ActivitySection({
 
                   {useDefaultDetails && PlatformIcon && entry.platform && (
                     <div className="flex items-center gap-2 text-xs">
-                      <PlatformIcon className={`h-3.5 w-3.5 flex-shrink-0 ${platformIconClassName ?? ""}`} />
+                      <PlatformIcon className={`h-3.5 w-3.5 shrink-0 ${platformIconClassName ?? ""}`} />
                       <span className={`font-kurdish font-medium ${platformTextClassName ?? ""}`}>
                         {entry.platform}
                       </span>

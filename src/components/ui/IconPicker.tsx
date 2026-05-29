@@ -87,13 +87,13 @@ export function IconPicker({ value, onChange, customTrigger }: IconPickerProps) 
   const modalContent = isOpen ? (
     <>
       <div
-        className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-lg animate-in fade-in duration-300"
+        className="fixed inset-0 z-100 bg-black/30 backdrop-blur-lg animate-in fade-in duration-300"
         onClick={() => setIsOpen(false)}
         aria-hidden
       />
       
       <div 
-        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-125 md:w-150 max-w-150 max-h-[85vh] sm:max-h-150 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col"
+        className="fixed z-101 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-125 md:w-150 max-w-150 max-h-[85vh] sm:max-h-150 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col"
         dir="ltr"
         onClick={(e) => e.stopPropagation()}
       >

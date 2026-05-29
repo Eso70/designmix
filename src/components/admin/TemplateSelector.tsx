@@ -26,7 +26,7 @@ const TemplateCard = memo(function TemplateCard({
     <button
       type="button"
       onClick={onSelect}
-      className={`group relative aspect-[4/3] w-full overflow-hidden rounded-xl border-2 transition-all duration-300 ${
+      className={`group relative aspect-4/3 w-full overflow-hidden rounded-xl border-2 transition-all duration-300 ${
         isSelected
           ? "border-[#47C0B9] shadow-lg ring-2 ring-[#47C0B9]/30 scale-105"
           : "border-slate-200 hover:border-[#47C0B9]/40 hover:shadow-md hover:scale-102"
@@ -35,14 +35,14 @@ const TemplateCard = memo(function TemplateCard({
     >
       {/* Background gradient */}
       <div 
-        className={`absolute inset-0 bg-gradient-to-br ${template.previewGradient} transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-linear-to-br ${template.previewGradient} transition-opacity duration-300 ${
           isSelected ? "opacity-95" : "opacity-70 group-hover:opacity-85"
         }`}
         aria-hidden
       />
       
       {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent" aria-hidden />
+      <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/25 to-transparent" aria-hidden />
       
       {/* Content - more compact */}
       <div className="relative flex flex-col items-center justify-center gap-1 p-1.5 sm:p-2 h-full">
@@ -64,7 +64,7 @@ const TemplateCard = memo(function TemplateCard({
         
         {/* Selection checkmark */}
         {isSelected && (
-          <div className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 rounded-full bg-gradient-to-br from-[#47C0B9] to-[#47C0B9] p-0.5 shadow-lg">
+          <div className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 rounded-full bg-linear-to-br from-[#47C0B9] to-[#47C0B9] p-0.5 shadow-lg">
             <Check className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-white" strokeWidth={3} />
           </div>
         )}
@@ -134,21 +134,21 @@ export const TemplateSelector = memo(function TemplateSelector({
     <>
       {/* Backdrop with blur */}
       <div
-        className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-lg animate-in fade-in duration-300"
+        className="fixed inset-0 z-100 bg-black/30 backdrop-blur-lg animate-in fade-in duration-300"
         onClick={onClose}
         aria-hidden
       />
       
       {/* Modal container - Smaller and fit to template count */}
       <div 
-        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-[85vw] md:w-[75vw] max-w-2xl max-h-[85vh] overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300"
+        className="fixed z-101 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-[85vw] md:w-[75vw] max-w-2xl max-h-[85vh] overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300"
         dir="ltr"
       >
         {/* Header - Compact */}
-        <div className="border-b border-gray-100/50 bg-gradient-to-r from-white to-[#47C0B9]/10">
+        <div className="border-b border-gray-100/50 bg-linear-to-r from-white to-[#47C0B9]/10">
           <div className="flex items-center justify-between p-3 sm:p-4">
             <div className="flex items-center gap-2 sm:gap-3">
-              <div className="rounded-xl bg-gradient-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 border border-[#47C0B9]/30 p-1.5 sm:p-2 shadow-sm">
+              <div className="rounded-xl bg-linear-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 border border-[#47C0B9]/30 p-1.5 sm:p-2 shadow-sm">
                 <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#47C0B9]" />
               </div>
               <div>
@@ -164,7 +164,7 @@ export const TemplateSelector = memo(function TemplateSelector({
             <button
               type="button"
               onClick={onClose}
-              className="flex-shrink-0 rounded-xl p-1.5 sm:p-2 bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
+              className="shrink-0 rounded-xl p-1.5 sm:p-2 bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 text-slate-500 hover:text-slate-700 transition-all duration-300 border border-slate-100 shadow-sm hover:shadow"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -174,7 +174,7 @@ export const TemplateSelector = memo(function TemplateSelector({
 
         {/* Content - Compact and fit to templates */}
         <div 
-          className="overflow-y-auto p-3 sm:p-4 flex items-center justify-center bg-gradient-to-br from-white to-slate-50/20"
+          className="overflow-y-auto p-3 sm:p-4 flex items-center justify-center bg-linear-to-br from-white to-slate-50/20"
           style={{ 
             scrollbarWidth: "thin", 
             scrollbarColor: "rgba(156,163,175,0.5) transparent",
@@ -186,7 +186,7 @@ export const TemplateSelector = memo(function TemplateSelector({
               {TEMPLATE_OPTIONS.map((template, index) => (
                 <div
                   key={template.id}
-                  className="w-full max-w-[90px] sm:max-w-[95px] md:max-w-[100px]"
+                  className="w-full max-w-22.5 sm:max-w-23.75 md:max-w-25"
                   style={{
                     animation: `fadeInUp 0.3s ease-out ${index * 0.03}s both`,
                   }}

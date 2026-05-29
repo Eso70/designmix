@@ -56,7 +56,7 @@ const LinktreeCard = memo(function LinktreeCard({
     <div className="group relative bg-white border border-gray-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 hover:shadow-lg hover:shadow-gray-200/50 hover:border-gray-300 transition-all duration-300">
       {/* Header Section */}
       <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
-        <div className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0 shadow-sm">
+        <div className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-gray-200 shrink-0 shadow-sm">
           <Image
             src={item.image || "/images/DefaultAvatar.png"}
             alt={item.name}
@@ -82,7 +82,7 @@ const LinktreeCard = memo(function LinktreeCard({
       {/* URL Section */}
       <div className="mb-2 sm:mb-3 p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gray-50 border border-gray-200">
         <div className="flex items-center gap-1 sm:gap-1.5 mb-1 sm:mb-1.5">
-          <LinkIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gray-400 flex-shrink-0" />
+          <LinkIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gray-400 shrink-0" />
           <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">URL</span>
         </div>
         <div className="flex items-center gap-1 sm:gap-1.5">
@@ -100,7 +100,7 @@ const LinktreeCard = memo(function LinktreeCard({
           </a>
           <button
             onClick={(e) => onCopy(item.uid, e)}
-            className="p-1 sm:p-1.5 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
+            className="p-1 sm:p-1.5 rounded-lg hover:bg-gray-100 transition-colors shrink-0"
             aria-label="Copy URL"
             title="Copy URL"
           >
@@ -193,7 +193,7 @@ export const LinktreesGrid = memo(function LinktreesGrid({
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-3 border-gray-200 border-t-red-600 rounded-full animate-spin" />
           <p className="text-gray-600 text-sm">چاوەڕوان بە...</p>
@@ -204,7 +204,7 @@ export const LinktreesGrid = memo(function LinktreesGrid({
 
   if (data.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] text-center p-8">
+      <div className="flex flex-col items-center justify-center min-h-100 text-center p-8">
         <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-50 border-2 border-gray-200 flex items-center justify-center mb-4">
           <LinkIcon className="h-10 w-10 sm:h-12 sm:w-12 text-gray-400" />
         </div>

@@ -795,26 +795,26 @@ export const AdminDashboard = memo(function AdminDashboard({
                   onClick={() => setViewMode("grid")}
                   className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
                     viewMode === "grid"
-                      ? "bg-gradient-to-r from-brand-400 to-brand-400 text-white shadow-md"
+                      ? "bg-linear-to-r from-brand-400 to-brand-400 text-white shadow-md"
                       : "text-slate-500 hover:text-slate-700 hover:bg-slate-50"
                   }`}
                   aria-label="Grid view"
                   title="بینینی گرید"
                 >
-                  <LayoutGrid className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
+                  <LayoutGrid className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
                   <span className="hidden xs:inline">Grid</span>
                 </button>
                 <button
                   onClick={() => setViewMode("table")}
                   className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
                     viewMode === "table"
-                      ? "bg-gradient-to-r from-[#47C0B9] to-[#47C0B9] text-white shadow-md"
+                      ? "bg-linear-to-r from-[#47C0B9] to-[#47C0B9] text-white shadow-md"
                       : "text-slate-500 hover:text-slate-700 hover:bg-slate-50"
                   }`}
                   aria-label="Table view"
                   title="بینینی خشتە"
                 >
-                  <Table2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
+                  <Table2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
                   <span className="hidden xs:inline">Table</span>
                 </button>
               </div>

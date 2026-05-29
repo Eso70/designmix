@@ -178,10 +178,10 @@ export function ProfileEditModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="relative p-4 sm:p-5 md:p-6 border-b border-gray-100/50 bg-gradient-to-r from-white to-[#47C0B9]/10">
+        <div className="relative p-4 sm:p-5 md:p-6 border-b border-gray-100/50 bg-linear-to-r from-white to-[#47C0B9]/10">
           <div className="flex items-start justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-              <div className="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 border border-[#47C0B9]/30 flex-shrink-0 shadow-sm">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-linear-to-br from-[#47C0B9]/10 to-[#47C0B9]/10 border border-[#47C0B9]/30 shrink-0 shadow-sm">
                 <User className="h-5 w-5 sm:h-6 sm:w-6 text-[#47C0B9]" />
               </div>
               <div className="min-w-0">
@@ -196,7 +196,7 @@ export function ProfileEditModal({
             <button
               onClick={handleClose}
               disabled={isLoading}
-              className="group relative flex items-center justify-center p-2 sm:p-2.5 rounded-xl bg-gradient-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all duration-300 text-slate-500 hover:text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-100 shadow-sm hover:shadow flex-shrink-0"
+              className="group relative flex items-center justify-center p-2 sm:p-2.5 rounded-xl bg-linear-to-br from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100 transition-all duration-300 text-slate-500 hover:text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-100 shadow-sm hover:shadow shrink-0"
               aria-label="داخستن"
               title="داخستن"
             >
@@ -206,17 +206,17 @@ export function ProfileEditModal({
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-2 p-3 sm:p-4 md:p-5 border-b border-gray-100/50 bg-gradient-to-r from-slate-50/50 to-gray-50/50">
+        <div className="flex items-center gap-2 p-3 sm:p-4 md:p-5 border-b border-gray-100/50 bg-linear-to-r from-slate-50/50 to-gray-50/50">
           <button
             onClick={() => setActiveTab("username")}
             disabled={isLoading}
             className={`group relative flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium font-kurdish transition-all duration-300 disabled:opacity-50 ${
               activeTab === "username"
-                ? "bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] text-white border border-[#47C0B9] shadow-lg"
-                : "text-slate-600 hover:text-slate-700 hover:bg-gradient-to-r hover:from-white hover:to-slate-50 border border-transparent hover:border-slate-200"
+                ? "bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] text-white border border-[#47C0B9] shadow-lg"
+                : "text-slate-600 hover:text-slate-700 hover:bg-linear-to-r hover:from-white hover:to-slate-50 border border-transparent hover:border-slate-200"
             }`}
           >
-            <User className="h-4 w-4 flex-shrink-0" />
+            <User className="h-4 w-4 shrink-0" />
             <span className="hidden xs:inline">ناوی بەکارهێنەر</span>
             <span className="xs:hidden">ناو</span>
           </button>
@@ -225,18 +225,18 @@ export function ProfileEditModal({
             disabled={isLoading}
             className={`group relative flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium font-kurdish transition-all duration-300 disabled:opacity-50 ${
               activeTab === "password"
-                ? "bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] text-white border border-[#47C0B9] shadow-lg"
-                : "text-slate-600 hover:text-slate-700 hover:bg-gradient-to-r hover:from-white hover:to-slate-50 border border-transparent hover:border-slate-200"
+                ? "bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] text-white border border-[#47C0B9] shadow-lg"
+                : "text-slate-600 hover:text-slate-700 hover:bg-linear-to-r hover:from-white hover:to-slate-50 border border-transparent hover:border-slate-200"
             }`}
           >
-            <Lock className="h-4 w-4 flex-shrink-0" />
+            <Lock className="h-4 w-4 shrink-0" />
             <span className="hidden xs:inline">تێپەڕەوشە</span>
             <span className="xs:hidden">تێپەڕەوشە</span>
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-5 md:p-6 lg:p-8 bg-gradient-to-br from-white to-slate-50/20">
+        <div className="p-4 sm:p-5 md:p-6 lg:p-8 bg-linear-to-br from-white to-slate-50/20">
           {activeTab === "username" ? (
             <form onSubmit={handleUpdateUsername} className="space-y-4 sm:space-y-5">
               <div>
@@ -285,7 +285,7 @@ export function ProfileEditModal({
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-white font-semibold font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg hover:shadow-xl bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]"
+                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-white font-semibold font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg hover:shadow-xl bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]"
               >
                 {isLoading ? (
                   <>
@@ -391,7 +391,7 @@ export function ProfileEditModal({
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-white font-semibold font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg hover:shadow-xl bg-gradient-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]"
+                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-white font-semibold font-kurdish transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg hover:shadow-xl bg-linear-to-r from-[#47C0B9] via-[#47C0B9] to-[#47C0B9] hover:from-[#47C0B9] hover:via-[#47C0B9] hover:to-[#47C0B9]"
               >
                 {isLoading ? (
                   <>

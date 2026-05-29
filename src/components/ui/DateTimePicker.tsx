@@ -251,7 +251,7 @@ export function DateTimePicker({
       </div>
 
       {isOpen && (
-        <div className="fixed z-[100] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[380px] rounded-2xl overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl"
+        <div className="fixed z-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-95 rounded-2xl overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl"
         >
           <div className="p-4 bg-linear-to-br from-white to-slate-50/20">
             {showYearPicker ? (

@@ -80,12 +80,12 @@ const TableRow = memo(function TableRow({
         </div>
       </td>
       <td className="px-2 sm:px-3 py-3">
-        <div className="text-xs sm:text-sm font-medium text-gray-900 break-words">
+        <div className="text-xs sm:text-sm font-medium text-gray-900 wrap-break-word">
           {item.name}
         </div>
       </td>
       <td className="px-2 sm:px-3 py-3 hidden md:table-cell">
-        <div className="text-xs text-gray-600 break-words line-clamp-2">
+        <div className="text-xs text-gray-600 wrap-break-word line-clamp-2">
           {item.subtitle || "—"}
         </div>
       </td>
@@ -110,7 +110,7 @@ const TableRow = memo(function TableRow({
           </a>
           <button
             onClick={(e) => onCopy(item.uid, e)}
-            className="p-0.5 sm:p-1 rounded hover:bg-gray-100 transition-colors duration-200 flex-shrink-0"
+            className="p-0.5 sm:p-1 rounded hover:bg-gray-100 transition-colors duration-200 shrink-0"
             aria-label="Copy URL"
             title="Copy URL"
           >
@@ -123,12 +123,12 @@ const TableRow = memo(function TableRow({
         </div>
       </td>
       <td className="px-2 sm:px-3 py-3 hidden xl:table-cell">
-        <div className="text-xs text-gray-600 break-words">
+        <div className="text-xs text-gray-600 wrap-break-word">
           {formatDate(item.created_at)}
         </div>
       </td>
       <td className="px-2 sm:px-3 py-3 hidden xl:table-cell">
-        <div className="text-xs text-gray-600 break-words">
+        <div className="text-xs text-gray-600 wrap-break-word">
           {formatDate(item.updated_at)}
         </div>
       </td>
@@ -137,7 +137,7 @@ const TableRow = memo(function TableRow({
           {onViewAnalytics && (
             <button
               onClick={() => onViewAnalytics(item.id, item.name)}
-              className="p-1 sm:p-1.5 rounded hover:bg-purple-50 transition-colors duration-200 flex-shrink-0"
+              className="p-1 sm:p-1.5 rounded hover:bg-purple-50 transition-colors duration-200 shrink-0"
               aria-label="View Analytics"
               title="بینینی ئامار"
             >
@@ -147,7 +147,7 @@ const TableRow = memo(function TableRow({
           {onEdit && (
             <button
               onClick={() => onEdit(item.id)}
-              className="p-1 sm:p-1.5 rounded hover:bg-brand-50 transition-colors duration-200 flex-shrink-0"
+              className="p-1 sm:p-1.5 rounded hover:bg-brand-50 transition-colors duration-200 shrink-0"
               aria-label="Edit"
               title="دەستکاریکردن"
             >
@@ -157,7 +157,7 @@ const TableRow = memo(function TableRow({
             {onDelete && item.uid !== "designmix" && (
             <button
               onClick={() => onDelete(item.id, item.uid, item.name)}
-              className="p-1 sm:p-1.5 rounded hover:bg-red-50 transition-colors duration-200 flex-shrink-0"
+              className="p-1 sm:p-1.5 rounded hover:bg-red-50 transition-colors duration-200 shrink-0"
               aria-label="Delete"
               title="سڕینەوە"
             >
@@ -212,7 +212,7 @@ export const LinktreesTable = memo(function LinktreesTable({ data = [], isLoadin
   const MobileCard = memo(function MobileCard({ item, formatDate }: { item: Linktree; formatDate: (dateString: string) => string }) {
     return (
       <div className="border-b border-gray-200 bg-white p-4 flex gap-4 hover:bg-gray-50 transition-colors duration-200" onClick={() => handleView(item.uid)}>
-        <div className="relative h-16 w-16 rounded-full overflow-hidden border border-gray-200 flex-shrink-0">
+        <div className="relative h-16 w-16 rounded-full overflow-hidden border border-gray-200 shrink-0">
           <Image
             src={item.image || "/images/DefaultAvatar.png"}
             alt={item.name}
@@ -225,8 +225,8 @@ export const LinktreesTable = memo(function LinktreesTable({ data = [], isLoadin
         <div className="flex-1 space-y-2">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <div className="text-base font-semibold text-gray-900 leading-tight break-words">{item.name}</div>
-              <div className="text-xs text-gray-600 break-words line-clamp-2">{item.subtitle || "—"}</div>
+                <div className="text-base font-semibold text-gray-900 leading-tight wrap-break-word">{item.name}</div>
+                  <div className="text-xs text-gray-600 wrap-break-word line-clamp-2">{item.subtitle || "—"}</div>
             </div>
             <div className="flex items-center gap-1">
               {onViewAnalytics && (
@@ -292,7 +292,7 @@ export const LinktreesTable = memo(function LinktreesTable({ data = [], isLoadin
       {/* Desktop table */}
       <div className="hidden sm:block rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm">
         <div className="w-full overflow-x-auto">
-          <table className="w-full border-collapse table-fixed min-w-[720px] bg-white">
+          <table className="w-full border-collapse table-fixed min-w-180 bg-white">
             <thead>
               <tr className="border-b border-gray-200 bg-white">
                 <th className="px-2 sm:px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide w-16 sm:w-20">

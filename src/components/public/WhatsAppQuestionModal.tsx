@@ -99,10 +99,10 @@ export const WhatsAppQuestionModal = memo(function WhatsAppQuestionModal({
     >
       <div className="relative w-full max-w-md rounded-2xl bg-white shadow-2xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-200">
         {/* Header */}
-        <div className="relative p-4 sm:p-5 md:p-6 border-b border-gray-100/50 bg-gradient-to-r from-white to-red-50/20">
+        <div className="relative p-4 sm:p-5 md:p-6 border-b border-gray-100/50 bg-linear-to-r from-white to-red-50/20">
           <div className="flex items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-              <div className="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-green-50 to-green-50 border border-green-100 flex-shrink-0 shadow-sm">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-linear-to-br from-green-50 to-green-50 border border-green-100 shrink-0 shadow-sm">
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
               </div>
               <div className="min-w-0 flex-1">
@@ -120,7 +120,7 @@ export const WhatsAppQuestionModal = memo(function WhatsAppQuestionModal({
             <button
               type="button"
               onClick={onClose}
-              className="flex-shrink-0 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all duration-200 active:scale-95"
+              className="shrink-0 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all duration-200 active:scale-95"
               aria-label="داخستن"
               title="داخستن"
             >
@@ -136,11 +136,11 @@ export const WhatsAppQuestionModal = memo(function WhatsAppQuestionModal({
               key={question.id} // ID is just for React key, can be any string
               type="button"
               onClick={() => handleQuestionClick(question.message)} // Direct message, no ID check
-              className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-white to-slate-50/50 hover:from-green-50 hover:to-green-50 border border-slate-200 hover:border-green-200 text-right text-sm sm:text-base font-medium text-slate-700 hover:text-green-700 transition-all duration-300 shadow-sm hover:shadow-md active:scale-[0.98] font-kurdish"
+              className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl bg-linear-to-r from-white to-slate-50/50 hover:from-green-50 hover:to-green-50 border border-slate-200 hover:border-green-200 text-right text-sm sm:text-base font-medium text-slate-700 hover:text-green-700 transition-all duration-300 shadow-sm hover:shadow-md active:scale-[0.98] font-kurdish"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="flex-1 text-right">{question.text}</span>
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-green-100 to-green-50 border border-green-200 flex items-center justify-center">
+                <div className="shrink-0 w-8 h-8 rounded-full bg-linear-to-br from-green-100 to-green-50 border border-green-200 flex items-center justify-center">
                   <span className="text-green-600 font-semibold text-sm">
                     {index + 1}
                   </span>

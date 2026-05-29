@@ -117,7 +117,7 @@ button {
 
 /* Gradient fallback for older browsers */
 @supports not (background: linear-gradient(to bottom, #000, #fff)) {
-  .bg-gradient-to-br {
+  .bg-linear-to-br {
     background-color: rgba(255, 255, 255, 0.1) !important;
   }
 }

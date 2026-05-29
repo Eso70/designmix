@@ -43,7 +43,7 @@ const PlatformButton = memo(function PlatformButton({
           : "border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50"
       }`}
     >
-      <div className={`p-3 rounded-lg bg-gradient-to-br ${platform.color}`}>
+      <div className={`p-3 rounded-lg bg-linear-to-br ${platform.color}`}>
         <Icon className="h-6 w-6 text-white" />
       </div>
       <span className="text-xs font-medium text-gray-900">{platform.name}</span>

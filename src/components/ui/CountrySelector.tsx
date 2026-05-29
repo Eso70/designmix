@@ -313,7 +313,7 @@ export function CountrySelector({
     return (
       <button
         type="button"
-        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-linear-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-[100px] shadow-sm ${className}`}
+        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-linear-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-25 shadow-sm ${className}`}
       >
         <span className="font-medium">+{value || "964"}</span>
         <ChevronDown className="h-4 w-4 text-slate-400" />
@@ -325,14 +325,14 @@ export function CountrySelector({
     <>
       {/* Backdrop with blur */}
       <div
-        className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-lg animate-in fade-in duration-300"
+        className="fixed inset-0 z-100 bg-black/30 backdrop-blur-lg animate-in fade-in duration-300"
         onClick={handleClose}
         aria-hidden
       />
       
       {/* Modal container - centered like template selector */}
       <div 
-        className="fixed z-[101] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-125 max-w-125 max-h-150 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300"
+        className="fixed z-101 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-125 max-w-125 max-h-150 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-100/50 shadow-2xl animate-in fade-in zoom-in-95 duration-300"
         dir="ltr"
         onClick={(e) => e.stopPropagation()}
       >
@@ -441,7 +441,7 @@ export function CountrySelector({
       <button
         type="button"
         onClick={handleToggle}
-        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-linear-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-[100px] shadow-sm ${className}`}
+        className={`flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-linear-to-br from-white to-slate-50/50 px-3 py-2 text-sm text-slate-700 transition-all duration-300 hover:border-[#47C0B9]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#47C0B9]/30 min-w-25 shadow-sm ${className}`}
       >
         <span className="font-medium">+{selectedCountry.code}</span>
         <ChevronDown
